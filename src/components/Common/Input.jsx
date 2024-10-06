@@ -13,6 +13,7 @@ const Input = forwardRef(
       type = "text",
       password,
       onValidateChange,
+      NoErr = false,
     },
     ref
   ) => {
@@ -49,18 +50,20 @@ const Input = forwardRef(
         isValid = emailRegex.test(value);
         setButtonActive(isValid);
       } else if (value && fieldName === "비밀번호") {
-        if (passwordRegex.test(value)) {
-          setErrorBorder(false);
-          setErrorMsg("");
-          isValid = true;
-        } else {
-          setErrorBorder(true);
-          if (value.length > 16 || value.length < 8) {
-            setErrorMsg("비밀번호는 8~16자 이내로 입력해 주세요.");
+        if (!NoErr) {
+          if (passwordRegex.test(value)) {
+            setErrorBorder(false);
+            setErrorMsg("");
+            isValid = true;
           } else {
-            setErrorMsg("영문대소문자, 숫자, 특수문자를 모두 포함해 주세요.");
+            setErrorBorder(true);
+            if (value.length > 16 || value.length < 8) {
+              setErrorMsg("비밀번호는 8~16자 이내로 입력해 주세요.");
+            } else {
+              setErrorMsg("영문대소문자, 숫자, 특수문자를 모두 포함해 주세요.");
+            }
+            isValid = false;
           }
-          isValid = false;
         }
       } else if (value && fieldName === "비밀번호 확인") {
         isValid = value === password;

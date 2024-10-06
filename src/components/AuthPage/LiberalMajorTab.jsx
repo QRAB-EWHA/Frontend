@@ -1,8 +1,13 @@
 import { useState } from "react";
 import { HumanitiesMajor } from "../../constants/MajorList";
 
-const LiberalMajor = ({ setMajorValue, sortingName, sortingList }) => {
-  const [major, setMajor] = useState();
+const LiberalMajor = ({
+  major,
+  setMajor,
+  setMajorValue,
+  sortingName,
+  sortingList,
+}) => {
   const handleMajor = (majorName) => {
     setMajor(majorName);
     setMajorValue(majorName);

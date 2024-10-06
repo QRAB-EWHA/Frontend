@@ -23,6 +23,7 @@ const SignUpContainer2 = () => {
   const [thirdValue, setThirdValue] = useState("");
   const [focusedInput, setFocusedInput] = useState(null);
   const [buttonActive, setButtonActive] = useState(false);
+  const [major, setMajor] = useState();
 
   const handleTab = (tabNum) => {
     setTab(tabNum);
@@ -123,16 +124,22 @@ const SignUpContainer2 = () => {
               setMajorValue={handleMajorSelection}
               sortingName="인문계열(17)"
               sortingList={HumanitiesMajor}
+              setMajor={setMajor}
+              major={major}
             />
             <LiberalMajor
               setMajorValue={handleMajorSelection}
               sortingName="사회계열(18)"
               sortingList={SocialMajor}
+              setMajor={setMajor}
+              major={major}
             />
             <LiberalMajor
               setMajorValue={handleMajorSelection}
               sortingName="교육계열(8)"
               sortingList={EducationMajor}
+              setMajor={setMajor}
+              major={major}
             />
           </div>
         ) : tab === "2" ? (
@@ -141,21 +148,29 @@ const SignUpContainer2 = () => {
               setMajorValue={handleMajorSelection}
               sortingName="교육계열(4)"
               sortingList={ScienceEducationMajor}
+              setMajor={setMajor}
+              major={major}
             />
             <LiberalMajor
               setMajorValue={handleMajorSelection}
               sortingName="공학계열(24)"
               sortingList={EngineeringMajor}
+              setMajor={setMajor}
+              major={major}
             />
             <LiberalMajor
               setMajorValue={handleMajorSelection}
               sortingName="자연계열(16)"
               sortingList={naturalScienceMajor}
+              setMajor={setMajor}
+              major={major}
             />
             <LiberalMajor
               setMajorValue={handleMajorSelection}
               sortingName="의약계열(10)"
               sortingList={MedicalMajor}
+              setMajor={setMajor}
+              major={major}
             />
           </div>
         ) : (
@@ -164,11 +179,15 @@ const SignUpContainer2 = () => {
               setMajorValue={handleMajorSelection}
               sortingName="교육계열(8)"
               sortingList={ArtsEducationMajor}
+              setMajor={setMajor}
+              major={major}
             />
             <LiberalMajor
               setMajorValue={handleMajorSelection}
               sortingName="예체능계열(16)"
               sortingList={ArtsMajor}
+              setMajor={setMajor}
+              major={major}
             />
           </div>
         )}
