@@ -15,15 +15,24 @@ import {
   SocialMajor,
 } from "../../constants/MajorList";
 import Button from "../Common/Button";
+import { postSignup } from "../../services/api/user";
+import { useNavigate } from "react-router-dom";
 
-const SignUpContainer2 = () => {
+const SignUpContainer2 = ({
+  nickname,
+  username,
+  password,
+  passwordConfirm,
+  phoneNumber,
+}) => {
   const [tab, setTab] = useState("1");
   const [majorValue, setMajorValue] = useState("");
   const [secondValue, setSecondValue] = useState("");
   const [thirdValue, setThirdValue] = useState("");
   const [focusedInput, setFocusedInput] = useState(null);
   const [buttonActive, setButtonActive] = useState(false);
-
+  const [major, setMajor] = useState();
+  const navigate = useNavigate();
   const handleTab = (tabNum) => {
     setTab(tabNum);
   };
@@ -43,6 +52,23 @@ const SignUpContainer2 = () => {
       setButtonActive(true);
     }
   }, [majorValue]);
+
+  const handleSubmit = async () => {
+    const payload = {
+      nickname,
+      username,
+      password,
+      passwordConfirm,
+      phoneNumber,
+      majorIds: [1, 9],
+    };
+    try {
+      const res = await postSignup(payload);
+      navigate("/storenote");
+    } catch (error) {
+      console.log(error);
+    }
+  };
 
   return (
     <div className="flex flex-col items-center overflow-y-hidden">
@@ -76,6 +102,7 @@ const SignUpContainer2 = () => {
             width="112px"
             height="40px"
             buttonText="완료"
+            handleButton={handleSubmit}
             buttonActive={buttonActive}
           />
         </div>
@@ -123,16 +150,22 @@ const SignUpContainer2 = () => {
               setMajorValue={handleMajorSelection}
               sortingName="인문계열(17)"
               sortingList={HumanitiesMajor}
+              setMajor={setMajor}
+              major={major}
             />
             <LiberalMajor
               setMajorValue={handleMajorSelection}
               sortingName="사회계열(18)"
               sortingList={SocialMajor}
+              setMajor={setMajor}
+              major={major}
             />
             <LiberalMajor
               setMajorValue={handleMajorSelection}
               sortingName="교육계열(8)"
               sortingList={EducationMajor}
+              setMajor={setMajor}
+              major={major}
             />
           </div>
         ) : tab === "2" ? (
@@ -141,21 +174,29 @@ const SignUpContainer2 = () => {
               setMajorValue={handleMajorSelection}
               sortingName="교육계열(4)"
               sortingList={ScienceEducationMajor}
+              setMajor={setMajor}
+              major={major}
             />
             <LiberalMajor
               setMajorValue={handleMajorSelection}
               sortingName="공학계열(24)"
               sortingList={EngineeringMajor}
+              setMajor={setMajor}
+              major={major}
             />
             <LiberalMajor
               setMajorValue={handleMajorSelection}
               sortingName="자연계열(16)"
               sortingList={naturalScienceMajor}
+              setMajor={setMajor}
+              major={major}
             />
             <LiberalMajor
               setMajorValue={handleMajorSelection}
               sortingName="의약계열(10)"
               sortingList={MedicalMajor}
+              setMajor={setMajor}
+              major={major}
             />
           </div>
         ) : (
@@ -164,11 +205,15 @@ const SignUpContainer2 = () => {
               setMajorValue={handleMajorSelection}
               sortingName="교육계열(8)"
               sortingList={ArtsEducationMajor}
+              setMajor={setMajor}
+              major={major}
             />
             <LiberalMajor
               setMajorValue={handleMajorSelection}
               sortingName="예체능계열(16)"
               sortingList={ArtsMajor}
+              setMajor={setMajor}
+              major={major}
             />
           </div>
         )}

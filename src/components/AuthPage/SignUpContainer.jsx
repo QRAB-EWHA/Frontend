@@ -56,7 +56,15 @@ const SignUpContainer = ({ setShowSignUpContainer2 }) => {
   };
 
   const handleNextButton = () => {
-    setShowSignUpContainer2(true);
+    const filteredPhoneNumber = phoneNumber.replace(/[^0-9]/g, "");
+
+    setShowSignUpContainer2({
+      nickname,
+      username: email,
+      password,
+      passwordConfirm: passwordCheck,
+      phoneNumber: filteredPhoneNumber,
+    });
   };
 
   return (
