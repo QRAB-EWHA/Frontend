@@ -1,6 +1,7 @@
 import { useEffect, useRef, useState } from "react";
 import Button from "../Common/Button";
 import Input from "../Common/Input";
+import DoubleCheckButton from "./DoubleCheckButton";
 
 const SignUpInputField = ({
   fieldName,
@@ -13,6 +14,7 @@ const SignUpInputField = ({
   type,
   password,
   onValidateChange,
+  NoErr,
 }) => {
   const inputRef = useRef(null);
   const [buttonActive, setButtonActive] = useState(false);
@@ -24,29 +26,30 @@ const SignUpInputField = ({
   }, [autoFocus]);
 
   return (
-    <div className="flex justify-center items-center gap-[16px] overflow-y-auto">
-      <div className="w-[77px] text-[14px] font-medium">{fieldName}</div>
-      <Input
-        setButtonActive={setButtonActive}
-        ref={inputRef}
-        width={width}
-        placeholder={placeholder}
-        changeInputValue={changeInputValue}
-        value={value}
-        fieldName={fieldName}
-        type={type}
-        password={password}
-        onValidateChange={onValidateChange}
-      />
-      {showButton && (
-        <Button
-          width="80px"
-          height="36px"
-          buttonActive={buttonActive}
-          buttonText="중복 확인"
+    <>
+      <div className="flex items-center gap-[16px]">
+        <div className="w-[77px] text-[14px] font-medium">{fieldName}</div>
+        <Input
+          setButtonActive={setButtonActive}
+          ref={inputRef}
+          width={width}
+          placeholder={placeholder}
+          changeInputValue={changeInputValue}
+          value={value}
+          fieldName={fieldName}
+          type={type}
+          password={password}
+          onValidateChange={onValidateChange}
+          NoErr={NoErr}
         />
-      )}
-    </div>
+        {showButton && (
+          <DoubleCheckButton
+            buttonText="중복 확인"
+            buttonActive={buttonActive}
+          />
+        )}
+      </div>
+    </>
   );
 };
 export default SignUpInputField;
