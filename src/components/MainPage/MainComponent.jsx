@@ -10,21 +10,37 @@ import { useNavigate } from "react-router-dom";
 import right_arrow from "../../assets/analysis/right_arrow.svg";
 import { getMain } from "../../services/api/main";
 import { useQuery } from "@tanstack/react-query";
+import { useEffect, useState } from "react";
 
 const MainComponent = () => {
   const navigate = useNavigate();
   const isLogin = localStorage.getItem("accessToken") ? true : false;
+  const [mainData, setMainData] = useState();
 
-  const {
-    data: mainData = {},
-    isError,
-    error,
-  } = useQuery({
-    queryKey: ["mainData"],
-    queryFn: getMain,
-    enabled: isLogin,
-  });
+  // const {
+  //   data: mainData = {}, // 기본값으로 빈 객체를 할당
+  //   isError,
+  //   error,
+  // } = useQuery({
+  //   queryKey: ["mainData"],
+  //   queryFn: getMain,
+  //   enabled: isLogin, // 로그인 상태에서만 쿼리 실행
+  // });
 
+  // if (isError) {
+  //   console.error(error); // 에러 처리
+  // }
+
+  useEffect(() => {
+    if (isLogin) {
+      const getMainData = async () => {
+        const res = await getMain();
+        console.log(res);
+        setMainData(res);
+      };
+      getMainData();
+    }
+  }, []);
   return (
     <>
       <div className="relative">
