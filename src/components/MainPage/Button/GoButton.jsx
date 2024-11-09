@@ -6,7 +6,7 @@ const GoButton = ({ text, subText, url }) => {
   return (
     <>
       <button
-        onClick={() => navigate({ url })}
+        onClick={() => navigate(url)}
         className={`flex justify-center items-center gap-6 ${
           text === "회원가입 하러 가기" ? "w-[34rem]" : ""
         } px-[6rem] py-6 rounded-[2.5rem] bg-primary_blue hover:shadow-custom2`}
