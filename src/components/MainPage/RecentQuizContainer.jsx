@@ -7,6 +7,7 @@ const RecentQuizContainer = ({
   noteName,
   totalQuizNum,
   noteContent,
+  quizsetId,
 }) => {
   const [isHovered, setIsHovered] = useState(false);
   return (
@@ -41,6 +42,7 @@ const RecentQuizContainer = ({
                         buttonText="퀴즈 풀기"
                         noteId={noteId}
                         solving={true}
+                        quizsetId={quizsetId}
                       />
                     </div>
                   </div>

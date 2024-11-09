@@ -25,6 +25,13 @@ const MainComponent = () => {
     console.error(error); // 에러 처리
   }
 
+  const handleScroll = () => {
+    window.scrollTo({
+      top: 1000,
+      behavior: "smooth",
+    });
+  };
+
   return (
     <>
       <div className="relative">
@@ -47,7 +54,10 @@ const MainComponent = () => {
               </div>
             </div>
 
-            <div className="flex items-center justify-center gap-2 w-[8.4375rem] h-[2.125rem] px-3 mb-[3.5rem] py-[0.38rem] rounded-[1.5rem] bg-[#494949]">
+            <div
+              onClick={handleScroll}
+              className="flex items-center justify-center gap-2 w-[8.4375rem] h-[2.125rem] px-3 mb-[3.5rem] py-[0.38rem] rounded-[1.5rem] bg-[#494949] cursor-pointer"
+            >
               <div className="text-base font-medium text-white">
                 나의 노트보기
               </div>
@@ -67,12 +77,14 @@ const MainComponent = () => {
         </div>
       </div>
 
-      <div className="flex flex-col items-center gap-12 w-full h-[45.25rem] pt-[2.5rem] bg-secondary_bg">
-        <MyNote mainData={mainData} />
-        <MyQuiz mainData={mainData} />
+      <div className="flex flex-col justify-center items-center gap-12 w-full h-[45.25rem] bg-secondary_bg">
+        <div className="flex flex-col gap-10 w-[65rem]">
+          <MyNote mainData={mainData} />
+          <MyQuiz mainData={mainData} />
+        </div>
       </div>
 
-      <div className="flex flex-col items-center gap-8 w-full h-screen min-h-[58.25rem] px-10 pt-[2.5rem] bg-white">
+      {/* <div className="flex flex-col items-center gap-8 w-full h-screen min-h-[58.25rem] px-10 pt-[2.5rem] bg-white">
         <div className="flex flex-col gap-2">
           <div className="text-xl font-semibold text-neutralBlack">
             최근 틀린 퀴즈
@@ -84,7 +96,7 @@ const MainComponent = () => {
             <SolvedQuizComponent mainData={mainData} />
           </div>
         </div>
-      </div>
+      </div> */}
     </>
   );
 };

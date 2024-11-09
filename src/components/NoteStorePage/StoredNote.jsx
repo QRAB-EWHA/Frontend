@@ -128,7 +128,7 @@ const StoredNote = ({
                   ) : (
                     <>
                       <CategoryTag tagText={parentCategory} />
-                      {childCategory && <CategoryTag tagText={childCategory} />}
+                      <CategoryTag tagText={childCategory} />
                     </>
                   )}
                 </div>

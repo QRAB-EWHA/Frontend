@@ -2,6 +2,7 @@ import constellation from "../../assets/main/stars/november/full.svg";
 import december from "../../assets/main/stars/december/default.svg";
 import { useNavigate } from "react-router-dom";
 import right_arrow from "../../assets/analysis/right_arrow.svg";
+import GoButton from "./Button/GoButton";
 
 const IntroComponent = () => {
   const navigate = useNavigate();
@@ -35,13 +36,7 @@ const IntroComponent = () => {
       </div>
 
       <div className="relative flex justify-center mb-[11.25rem]">
-        <button
-          onClick={() => navigate("/signup")}
-          className="flex justify-center items-center gap-6 w-[34rem] h-18 px-[3em] py-6 rounded-[2.5rem] bg-primary_blue text-2xl font-medium text-white"
-        >
-          회원가입 하러 가기
-          <img src={right_arrow} />
-        </button>
+        <GoButton text="회원가입 하러 가기" url="/signup" />
       </div>
     </>
   );

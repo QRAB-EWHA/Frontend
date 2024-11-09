@@ -1,5 +1,6 @@
 import StoredNote from "../NoteStorePage/StoredNote";
 import noteIcon1 from "../../assets/storenotepage/note_icon1.svg";
+import GoButton from "./Button/GoButton";
 const threeNoteInfo = [
   {
     noteId: 6,
@@ -36,17 +37,28 @@ const MyNote = ({ mainData }) => {
           최근 내가 추가한 노트를 확인해 보세요
         </div>
         <div className="flex gap-5">
-          {mainData.threeNoteInfo.map((it, index) => (
-            <>
-              <StoredNote
-                noteName={it.title}
-                noteId={it.noteId}
-                noteContent={it.chatgptContent}
-                noteIcon={noteIcon1}
-                parentCategory={it.categoryName}
+          {mainData.threeNoteInfo.length === 0 ? (
+            <div className="flex justify-center w-full">
+              <GoButton
+                text="최근 추가한 노트가 없어요!"
+                subText="노트 생성하러 가기"
+                url="/storenote"
               />
-            </>
-          ))}
+            </div>
+          ) : (
+            mainData.threeNoteInfo.map((it, index) => (
+              <>
+                <StoredNote
+                  noteName={it.title}
+                  noteId={it.noteId}
+                  noteContent={it.chatgptContent}
+                  noteIcon={noteIcon1}
+                  parentCategory={it.parentCategoryName}
+                  childCategory={it.categoryName}
+                />
+              </>
+            ))
+          )}
         </div>
       </div>
     </>

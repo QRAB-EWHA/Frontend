@@ -59,8 +59,14 @@ const NoteSummaryModal = ({
           <div className="text-2xl font-bold whitespace-pre-wrap ">{title}</div>
           <div className="flex justify-between">
             <div className="flex gap-2">
-              <CategoryTag tagText={category} />
-              {childCategory && <CategoryTag tagText={childCategory} />}
+              {!category ? (
+                <CategoryTag tagText={childCategory} />
+              ) : (
+                <>
+                  <CategoryTag tagText={category} />
+                  <CategoryTag tagText={childCategory} />
+                </>
+              )}
             </div>
             <PublicToggle
               handleToggle={handleToggle}

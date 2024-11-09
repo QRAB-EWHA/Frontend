@@ -28,6 +28,7 @@ const NavBar = () => {
   }, []);
 
   const handleLogo = () => {
+    setIsBrightMode(false);
     navigate("/");
   };
 
