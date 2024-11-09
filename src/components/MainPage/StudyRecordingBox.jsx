@@ -1,4 +1,9 @@
+import { useEffect } from "react";
+
 const StudyRecordingBox = ({ mainData }) => {
+  useEffect(() => {
+    console.log(mainData);
+  }, []);
   return (
     <>
       <div className="flex flex-col justify-center gap-2 w-[16.5rem] h-[8.75rem] px-6 border-[1px] border-white rounded-[1rem] bg-[rgba(255,255,255,0.10)]">

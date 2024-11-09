@@ -39,8 +39,7 @@ const NavBar = () => {
   const handleSubNavbar = () => {
     if (nickname) {
       localStorage.removeItem("accessToken");
-      setIsBrightMode(false);
-      navigate("/");
+      window.location.reload();
     } else {
       navigate("/login");
     }
