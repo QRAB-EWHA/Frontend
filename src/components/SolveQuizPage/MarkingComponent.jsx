@@ -8,6 +8,7 @@ import MarkedQuizComponent from "./MarkedQuizComponent";
 const MarkingComponent = () => {
   const location = useLocation();
   const resultData = location.state?.resultData;
+  console.log(resultData);
   return (
     <>
       <div className="flex justify-center w-full h-auto bg-neutralwhite">

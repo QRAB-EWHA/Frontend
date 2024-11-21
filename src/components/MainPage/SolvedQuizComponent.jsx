@@ -44,7 +44,7 @@ const data = [
 const SolvedQuizComponent = ({ mainData }) => {
   return (
     <>
-      {data.map((it, index) => (
+      {mainData.recentWrongQuizzes.map((it, index) => (
         <>
           <div className="flex items-center w-[58.75rem] h-auto py-6 pl-8 rounded-[1rem] bg-secondary_bg shadow-custom">
             <div className="flex flex-col gap-6">

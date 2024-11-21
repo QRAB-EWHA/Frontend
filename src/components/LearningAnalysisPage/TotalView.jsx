@@ -4,7 +4,8 @@ import StatisticBox from "./StatisticBox";
 import right_arrow from "../../assets/analysis/right_arrow.svg";
 import { useNavigate } from "react-router-dom";
 
-const TotalView = () => {
+const TotalView = ({ analyticsData }) => {
+  console.log(analyticsData);
   const navigate = useNavigate();
   const { isBrightMode } = useIsBrightModeStore();
   return (

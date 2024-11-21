@@ -64,8 +64,8 @@ const NavBar = () => {
             isBrightMode ? "text-neutralblack" : "text-neutralwhite"
           } `}
         >
-          {MenuList.map((it) => (
-            <>
+          {MenuList.map((it, index) => (
+            <div key={index}>
               <div
                 className="relative"
                 onMouseEnter={() => setHoveredNavbar(it.id)}
@@ -143,7 +143,7 @@ const NavBar = () => {
                   </>
                 )}
               </div>
-            </>
+            </div>
           ))}
         </div>
         <div

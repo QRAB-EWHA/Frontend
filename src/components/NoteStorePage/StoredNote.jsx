@@ -5,6 +5,11 @@ import QuizButton from "../QuizLabPage/Button/QuizButton";
 import { useNavigate } from "react-router-dom";
 import useIsNoteSummaryModalStore from "../../store/isNoteSummaryModalStore";
 import { getNoteSummary } from "../../services/api/noteStore";
+import useIsCreateQuizModalStore from "../../store/isCreateQuizModalStore";
+import useNoteTitleStore from "../../store/useNoteTitleStore";
+import useNoteIdStore from "../../store/useNoteIdStore";
+import useIsBrightModeStore from "../../store/isBrightModeStore";
+import useGeneratedQuizNumStore from "../../store/generatedQuizNum";
 const StoredNote = ({
   noteName,
   noteId,
@@ -16,9 +21,16 @@ const StoredNote = ({
   quizGenerationCount,
   quizSolvePage = false,
   page,
+  isAllQuizSet = false,
 }) => {
   const [isHovered, setIsHovered] = useState(false);
   const { setIsNoteData, setIsNoteSummaryModal } = useIsNoteSummaryModalStore();
+  const { setIsCreateQuizModal } = useIsCreateQuizModalStore();
+  const { setNoteTitle } = useNoteTitleStore();
+  const { setCurrentNoteId } = useNoteIdStore();
+  const { setGeneratedQuizNum } = useGeneratedQuizNumStore();
+  const navigate = useNavigate();
+
   useEffect(() => {
     console.log(quizGenerationCount);
   }, []);
@@ -33,6 +45,24 @@ const StoredNote = ({
     } else {
       console.log("노트 요약본 조회 실패");
     }
+  };
+
+  const handleShowQuizSet = () => {
+    if (isAllQuizSet) {
+      navigate(`/quizlab/quizset/${noteId}`, {
+        state: { isAllQuizSet: isAllQuizSet },
+      });
+    } else {
+      setNoteTitle(noteName);
+      navigate(`/solvequiz/quizset/${noteId}`);
+    }
+  };
+
+  const handleCreateQuiz = () => {
+    setGeneratedQuizNum(quizGenerationCount);
+    setNoteTitle(noteName);
+    setCurrentNoteId(noteId);
+    setIsCreateQuizModal(true);
   };
 
   return (
@@ -70,10 +100,14 @@ const StoredNote = ({
                     ? "퀴즈 재생성 하기"
                     : "퀴즈 생성하기"
                 }
+                handleQuizButton={
+                  quizSolvePage ? handleShowQuizSet : handleCreateQuiz
+                }
                 noteName={noteName}
                 noteId={noteId}
                 quizGenerationCount={quizGenerationCount}
                 solveQuiz={quizSolvePage}
+                isAllQuizSet={isAllQuizSet}
               />
             </div>
           </div>

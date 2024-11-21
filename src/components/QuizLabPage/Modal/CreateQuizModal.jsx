@@ -33,12 +33,13 @@ const CreateQuizModal = ({ setModal }) => {
     try {
       if (generatedQuizNum != 0 && selectedQuizType === "reviewQuiz") {
         const quizNum = {
-          quizSetId: 1,
+          noteId: noteId,
           totalQuestions: inputValue,
           quizType: "review",
         };
         console.log(quizNum);
         const res = await postReQuiz(quizNum);
+        setCreatedQuizSet(res.quizSetId);
         console.log(res);
         setLoading(false);
         setQuizCreateComplete(true);

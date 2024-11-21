@@ -1,19 +1,25 @@
 import { useState } from "react";
 import ResultTag from "./ResultTag";
 import QuizButton from "./Button/QuizButton";
+import { useNavigate } from "react-router-dom";
+import useIsBrightModeStore from "../../store/isBrightModeStore";
+import { getSolvedTotalQuiz } from "../../services/api/quizLab";
+import { getResolveQuiz } from "../../services/api/solveQuiz";
 
 const QuizContainer = ({
   noteName,
   noteId,
   totalQuizNum,
   noteIcon,
-  majorityNum = 0,
-  result,
   createdAt,
   quizsetId,
   solveQuiz = false,
+  solvedAt,
+  answerSummary,
 }) => {
   const [isHovered, setIsHovered] = useState(false);
+  const navigate = useNavigate();
+  const { setIsBrightMode } = useIsBrightModeStore();
 
   const formatDate = (dateString) => {
     const date = new Date(dateString);
@@ -21,6 +27,28 @@ const QuizContainer = ({
     const day = date.getDate();
     return `${month}/${day}`;
   };
+
+  const handleSolvingQuiz = () => {
+    navigate(`/solvequiz/quizset/${noteId}/solving/${quizsetId}`);
+    setIsBrightMode(true);
+  };
+
+  const handleReSolveQuiz = async () => {
+    const resolveQuizData = await getResolveQuiz(quizsetId);
+    console.log(resolveQuizData);
+    navigate(`/resolvequiz/quizset/${quizsetId}`, {
+      state: { resultData: resolveQuizData },
+    });
+  };
+
+  const handleShowTotalQuiz = async () => {
+    const solvedTotalQuizData = await getSolvedTotalQuiz(quizsetId);
+    console.log(solvedTotalQuizData);
+    navigate(`/showsolvedquiz/quizset/${quizsetId}`, {
+      state: { resultData: solvedTotalQuizData },
+    });
+  };
+
   return (
     <div
       onMouseEnter={() => setIsHovered(true)}
@@ -49,14 +77,20 @@ const QuizContainer = ({
                     <div className="mt-[15px]">
                       <ResultTag
                         hover={true}
-                        num={majorityNum}
+                        answerSummary={answerSummary}
                         solveQuiz={solveQuiz}
                       />
                     </div>
                     {!solveQuiz && (
                       <div className="flex gap-[12px] mt-4">
-                        <QuizButton buttonText="오답 다시 풀기" />
-                        <QuizButton buttonText="모든 퀴즈 보기" />
+                        <QuizButton
+                          handleQuizButton={handleReSolveQuiz}
+                          buttonText="오답 다시 풀기"
+                        />
+                        <QuizButton
+                          handleQuizButton={handleShowTotalQuiz}
+                          buttonText="모든 퀴즈 보기"
+                        />
                       </div>
                     )}
                   </div>
@@ -67,6 +101,7 @@ const QuizContainer = ({
                         noteId={noteId}
                         solving={true}
                         quizsetId={quizsetId}
+                        handleQuizButton={handleSolvingQuiz}
                       />
                     </div>
                   )}
@@ -86,13 +121,14 @@ const QuizContainer = ({
               <div className="text-[14px] font-medium text-gray_300">
                 {solveQuiz
                   ? `생성 ${formatDate(createdAt)}`
-                  : "생성 8/10 | 풀이 8/15"}
+                  : `생성 ${formatDate(createdAt)} | 풀이 ${formatDate(
+                      solvedAt
+                    )}`}
               </div>
               <div className="mt-[10px]">
                 <ResultTag
-                  result={result}
-                  num={majorityNum}
                   solveQuiz={solveQuiz}
+                  answerSummary={answerSummary}
                 />
               </div>
             </div>

@@ -99,7 +99,10 @@ const DetailAnalysisBox = () => {
                 </div>
                 <div className="flex gap-5 ">
                   {it.references.map((ref, index) => (
-                    <div className="flex flex-col justify-center gap-2 w-[28.75rem] h-[5.875rem] px-8 rounded-[0.5rem] bg-white shadow-custom">
+                    <div
+                      key={index}
+                      className="flex flex-col justify-center gap-2 w-[28.75rem] h-[5.875rem] px-8 rounded-[0.5rem] bg-white shadow-custom"
+                    >
                       <div className="text-base font-medium">{ref.title}</div>
                       <div className="text-[0.8125rem] text-gray_400">
                         <a

@@ -18,6 +18,10 @@ import MainPage from "../pages/MainPage/MainPage";
 import MonthlyAnalyticsComponent from "../components/LearningAnalysisPage/MonthlyAnalyticsComponent";
 import MonthlyAnalyticsPage from "../pages/LearningAnalyticsPage/MonthlyAnalyticsPage";
 import DetailAnalyticsPage from "../pages/LearningAnalyticsPage/DetailAnalyticsPage";
+import ShowQuizSetPage from "../pages/QuizLabPage/ShowQuizSetPage";
+import ShowAllQuizPage from "../pages/QuizLabPage/ShowAllQuizPage";
+import ResolveQuizPage from "../pages/SolveQuizPage/ReSolveQuizPage";
+import SolvedTotalQuizPage from "../pages/SolveQuizPage/SolvedTotalQuizPage";
 
 const Router = () => (
   <RouterProvider
@@ -46,6 +50,14 @@ const Router = () => (
             element: <ProtectedRoute element={<QuizStoragePage />} />,
           },
           {
+            path: "/quizlab/quizset/:id",
+            element: <ProtectedRoute element={<ShowQuizSetPage />} />,
+          },
+          {
+            path: "/quizlab/quizset/:id/shotallquiz/:quizSetId",
+            element: <ProtectedRoute element={<ShowAllQuizPage />} />,
+          },
+          {
             path: "/quizlab/bookMark",
             element: <ProtectedRoute element={<BookMarkQuizPage />} />,
           },
@@ -65,6 +77,15 @@ const Router = () => (
             path: "/solvequiz/quizset/:id/marked/:quizSetId",
             element: <ProtectedRoute element={<MarkedPage />} />,
           },
+          {
+            path: "/showsolvedquiz/quizset/:quizSetId",
+            element: <ProtectedRoute element={<SolvedTotalQuizPage />} />,
+          },
+          {
+            path: "/resolvequiz/quizset/:quizSetId",
+            element: <ProtectedRoute element={<ResolveQuizPage />} />,
+          },
+
           {
             path: "/mypage",
             element: <ProtectedRoute element={<MyPage />} />,
