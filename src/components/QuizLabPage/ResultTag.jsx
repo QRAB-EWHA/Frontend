@@ -1,4 +1,6 @@
-const ResultTag = ({ hover, result, num, solveQuiz = false }) => {
+const ResultTag = ({ hover, solveQuiz = false, answerSummary }) => {
+  const result =
+    answerSummary && answerSummary.slice(0, 2) === "정답" ? "correct" : "false";
   return (
     <div
       className={`flex justify-center items-center w-[68px] h-[22px] rounded-[4px] text-[12px] font-medium ${
@@ -11,11 +13,7 @@ const ResultTag = ({ hover, result, num, solveQuiz = false }) => {
           : "bg-secondary_red text-neutralred"
       }`}
     >
-      {solveQuiz
-        ? "미풀이"
-        : result === "correct"
-        ? `정답 ${num}문제`
-        : `오답 ${num}문제`}
+      {solveQuiz ? "미풀이" : answerSummary}
     </div>
   );
 };

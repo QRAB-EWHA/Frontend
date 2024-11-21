@@ -1,5 +1,7 @@
 import { useState } from "react";
 import QuizButton from "../QuizLabPage/Button/QuizButton";
+import { useNavigate } from "react-router-dom";
+import useIsBrightModeStore from "../../store/isBrightModeStore";
 
 const RecentQuizContainer = ({
   noteIcon,
@@ -10,6 +12,13 @@ const RecentQuizContainer = ({
   quizsetId,
 }) => {
   const [isHovered, setIsHovered] = useState(false);
+  const navigate = useNavigate();
+  const { setIsBrightMode } = useIsBrightModeStore();
+
+  const handleSolvingQuiz = () => {
+    navigate(`/solvequiz/quizset/${noteId}/solving/${quizsetId}`);
+    setIsBrightMode(true);
+  };
   return (
     <>
       <div
@@ -43,6 +52,7 @@ const RecentQuizContainer = ({
                         noteId={noteId}
                         solving={true}
                         quizsetId={quizsetId}
+                        handleQuizButton={handleSolvingQuiz}
                       />
                     </div>
                   </div>

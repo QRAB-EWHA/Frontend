@@ -60,8 +60,9 @@ const CreatedQuizComponent = ({ categoryData }) => {
           />
           <div className="grid grid-cols-3 gap-[20px] mt-[32px]">
             {selectedNotes.length !== 0 &&
-              selectedNotes.map((it) => (
+              selectedNotes.map((it, index) => (
                 <StoredNote
+                  key={index}
                   page="QuizLab"
                   noteIcon={noteIcon1}
                   noteId={it.noteId}

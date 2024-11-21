@@ -11,7 +11,7 @@ import useIsSelectCategoryModal from "../../store/isSelectCategoryModalStore";
 
 const CategoryTabs = ({
   categoryData,
-  noteData,
+  noteData = [],
   setSelectedNotes,
   editable = false,
   width = "920px",
@@ -95,7 +95,7 @@ const CategoryTabs = ({
 
   return (
     <>
-      <div className="flex flex-col">
+      <div className="relative flex flex-col">
         <div className="flex items-center gap-2 mt-6">
           {editable && !editButtonHovered ? (
             <div
@@ -152,8 +152,9 @@ const CategoryTabs = ({
               </div>
             )}
             {categoryData &&
-              categoryData.map((it) => (
+              categoryData.map((it, index) => (
                 <FirstCategoryTab
+                  key={index}
                   firstTab={categoryData}
                   tabName={it.name}
                   index={it.id}
