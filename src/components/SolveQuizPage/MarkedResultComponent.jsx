@@ -19,7 +19,9 @@ const MarkedResultComponent = ({ resultData }) => {
         <div className="flex items-center gap-[1.41rem]">
           <img src={page_icon} />
           <div className="text-base font-medium text-gray_400">
-            {resultData.noteTitle}
+            {resultData.noteTitle.length > 60
+              ? `${resultData.noteTitle.slice(0, 60)}...`
+              : resultData.noteTitle}
           </div>
         </div>
         <div className="border-t-[0.0625rem] border-gray_100 mt-4 mb-5"></div>

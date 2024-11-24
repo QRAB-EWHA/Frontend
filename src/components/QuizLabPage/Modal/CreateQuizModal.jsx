@@ -127,7 +127,9 @@ const CreateQuizModal = ({ setModal }) => {
                 <div className="w-[660px] h-[210px] rounded-[20px] border-[2px] border-gray_100">
                   <div className="relative flex flex-col  ml-[32px] mt-[24px]">
                     <div className=" text-[20px] font-semibold">
-                      {noteTitle}
+                      {noteTitle.length > 45
+                        ? `${noteTitle.slice(0, 45)}...`
+                        : noteTitle}
                     </div>
                     {generatedQuizNum > 0 && (
                       <div className="absolute top-7 flex gap-[17px] text-[14px] text-primary_blue font-medium">
