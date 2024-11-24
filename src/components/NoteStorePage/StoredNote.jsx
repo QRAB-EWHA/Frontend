@@ -76,8 +76,8 @@ const StoredNote = ({
           <div className="flex flex-col">
             <div className="mt-[16px] ml-[20px]">
               <div className=" flex items-center leading-6 w-[196px] h-[72px] text-wrap font-semibold text-neutralwhite text-[20px]">
-                {noteName.length > 20
-                  ? `${noteName.slice(0, 20)}...`
+                {noteName.length > 25
+                  ? `${noteName.slice(0, 25)}...`
                   : noteName}
               </div>
               <div className="flex gap-[8px] mt-[8px]">
@@ -145,7 +145,7 @@ const StoredNote = ({
           </div>
           {!isHovered && (
             <div className="flex items-center leading-6 ml-[20px] mt-[16px] w-[196px] h-[72px] text-wrap font-semibold text-neutralwhite text-[20px]">
-              {noteName.length > 20 ? `${noteName.slice(0, 20)}...` : noteName}
+              {noteName.length > 25 ? `${noteName.slice(0, 25)}...` : noteName}
             </div>
           )}
         </div>

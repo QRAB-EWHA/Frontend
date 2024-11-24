@@ -34,7 +34,9 @@ const RecentQuizContainer = ({
             {!isHovered ? (
               <>
                 <div className="flex items-center leading-6 ml-[20px] mt-[16px] w-[196px] h-[72px] text-wrap  font-semibold text-neutralwhite text-[20px]">
-                  {noteName}
+                  {noteName.length > 25
+                    ? `${noteName.slice(0, 25)}...`
+                    : noteName}
                 </div>
               </>
             ) : (
@@ -43,7 +45,9 @@ const RecentQuizContainer = ({
                   <div className="flex flex-col justify-center">
                     <div className={`mt-[16px] ml-[20px]`}>
                       <div className=" flex leading-6 w-[196px] h-[72px] text-wrap font-semibold text-neutralwhite text-[20px]">
-                        {noteName}
+                        {noteName.length > 25
+                          ? `${noteName.slice(0, 25)}...`
+                          : noteName}
                       </div>
                     </div>
                     <div className="flex justify-center w-[300px] mt-4">
