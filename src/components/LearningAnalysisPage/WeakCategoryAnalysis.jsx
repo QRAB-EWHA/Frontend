@@ -1,11 +1,11 @@
 import TreeStatisticBox from "./TreeStatisticBox";
 import WordStatisticAnalysis from "./WordStatisticAnalysis";
 
-const WeakCategoryAnalysis = () => {
+const WeakCategoryAnalysis = ({ weakCategoryData }) => {
   return (
     <>
       <div className="flex gap-5">
-        <TreeStatisticBox />
+        <TreeStatisticBox weakCategoryData={weakCategoryData} />
       </div>
     </>
   );

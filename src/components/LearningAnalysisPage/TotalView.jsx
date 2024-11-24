@@ -27,21 +27,21 @@ const TotalView = ({ analyticsData }) => {
             <StatisticBox
               boxName="이번 달 학습일"
               boxSubText="퀴즈를 풀이한 날짜를 기준으로 측정됩니다."
-              StatisticResult="17일"
+              StatisticResult={analyticsData.learningDays}
             />
             <StatisticBox
               boxName="풀이한 퀴즈 문제 수"
               boxSubText="이번 달 풀이한 퀴즈 문제 수를 확인하세요."
-              StatisticResult="89문제"
+              StatisticResult={analyticsData.solvedQuizCount}
             />
             <StatisticBox
               boxName="평균 정답률"
               boxSubText="이번 달 풀이한 퀴즈의 평균 정답률이에요."
-              StatisticResult="83.7%"
+              StatisticResult={`${analyticsData.averageAccuracy * 100}%`}
             />
           </div>
           <div className="mb-[15rem]">
-            <RecordingCalendar />
+            <RecordingCalendar detail={true} />
           </div>
           <div className="flex justify-center mb-[11.25rem]">
             <button

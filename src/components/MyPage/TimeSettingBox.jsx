@@ -14,6 +14,8 @@ const TimeSettingBox = () => {
     };
     console.log(timeData);
     const res = await postAlarmTime(timeData);
+    window.location.reload();
+
     console.log(res);
   };
 

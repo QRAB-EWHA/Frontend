@@ -1,8 +1,24 @@
 import React, { useEffect } from "react";
 import tag_bgimg from "../../assets/analysis/tab_background.svg";
+import { getMonthlyData } from "../../services/api/analytics";
+import { useQuery } from "@tanstack/react-query";
 
 const CalendarBody = ({ currentDate }) => {
   const daysOfWeek = ["MON", "TUE", "WED", "THU", "FRI", "SAT", "SUN"];
+  console.log(currentDate.getFullYear(), currentDate.getMonth() + 1);
+  const {
+    data: monthlyAnalyticsData,
+    isError,
+    error,
+  } = useQuery({
+    queryKey: [
+      "monthlyAnalyticsData",
+      currentDate.getFullYear(),
+      currentDate.getMonth() + 1,
+    ],
+    queryFn: () =>
+      getMonthlyData(currentDate.getFullYear(), currentDate.getMonth() + 1),
+  });
 
   //각 달에 해당하는 day를 가져옴
   const getDaysInMonth = (year, month) => {
@@ -13,11 +29,12 @@ const CalendarBody = ({ currentDate }) => {
   };
 
   const generateCalendarData = () => {
-    const year = currentDate.getFullYear();
-    const month = currentDate.getMonth();
-    const daysInMonth = getDaysInMonth(year, month);
+    if (!monthlyAnalyticsData) return []; // 데이터가 없으면 빈 배열 반환
+    const { year, month, days } = monthlyAnalyticsData;
+    const daysInMonth = getDaysInMonth(year, month - 1);
     const firstDayIndex = daysInMonth[0].getDay() || 7; // 월요일 시작
     console.log(firstDayIndex); //만약 11월이 금요일에 시작하면 출력값은 5
+
     const weeks = [];
     let week = new Array(7).fill({ label: "", task: "", completion: "" });
     let dayCounter = 0;
@@ -29,10 +46,15 @@ const CalendarBody = ({ currentDate }) => {
 
     // 날짜 채우기
     daysInMonth.forEach((date) => {
+      const dayData = days.find(
+        (day) => day.date === date.toISOString().split("T")[0]
+      );
       week[(firstDayIndex - 1 + dayCounter) % 7] = {
         label: date.getDate().toString(),
-        task: "n문제 풀이",
-        completion: `${Math.floor(Math.random() * 101)}%`, // 임의 완료율
+        task: dayData ? `${dayData.solvedQuizCount} 문제 풀이` : "",
+        completion: dayData
+          ? `${Math.round(dayData.dailyAccuracy * 100)}%`
+          : "",
       };
       dayCounter++;
 
@@ -68,7 +90,10 @@ const CalendarBody = ({ currentDate }) => {
           {calendarData.map((week, weekIndex) => (
             <React.Fragment key={weekIndex}>
               {week.map((day, dayIndex) => (
-                <div key={dayIndex} className=" border text-center">
+                <div
+                  key={dayIndex}
+                  className=" border text-center  flex flex-col  justify-between  min-h-[6rem] min-w-[5rem]"
+                >
                   <div className="flex flex-col gap-4 mb-2">
                     <div className="flex justify-end w-[l.25rem] pr-3 pt-3 text-sm font-medium">
                       {day.label}

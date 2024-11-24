@@ -1,8 +1,11 @@
 import { useState } from "react";
 import down_arrow from "../../assets/analysis/down_arrow.svg";
-const MonthSortingDropdown = () => {
-  const [initialValue, setInitialValue] = useState("전체 기간");
-  const [dropDownClick, setDropDownClick] = useState(false);
+const MonthSortingDropdown = ({
+  initialValue,
+  setInitialValue,
+  dropDownClick,
+  setDropDownClick,
+}) => {
   return (
     <>
       <div className="relative ">
@@ -20,6 +23,12 @@ const MonthSortingDropdown = () => {
             onClick={() => setDropDownClick(false)}
             className="absolute right-1 flex flex-col mt-2 border-[1px] rounded-b-[0.5rem] text-gray_400 text-sm shadow-custom cursor-pointer"
           >
+            <li
+              onClick={() => setInitialValue("전체 기간")}
+              className="flex justify-center itmes-center px-4 py-2 border-b-[1px]"
+            >
+              전체 기간
+            </li>
             <li
               onClick={() => setInitialValue("최근 1개월")}
               className="px-4 py-2 border-b-[1px]"

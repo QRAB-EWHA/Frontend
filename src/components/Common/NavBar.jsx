@@ -16,16 +16,14 @@ const NavBar = () => {
   const { isBrightMode, setIsBrightMode } = useIsBrightModeStore();
   const navigate = useNavigate();
 
-  useEffect(() => {
-    const getProfileData = async () => {
-      const res = await getProfile();
-      console.log(res);
-      if (res) {
-        setNickname(res.nickname);
-      }
-    };
-    getProfileData();
-  }, []);
+  const {
+    data: profileData,
+    isError,
+    error,
+  } = useQuery({
+    queryKey: ["profileData"],
+    queryFn: getProfile,
+  });
 
   const handleLogo = () => {
     setIsBrightMode(false);
@@ -168,7 +166,7 @@ const NavBar = () => {
                 isBrightMode ? "text-primary_blue" : "text-neutralwhite"
               }`}
             >
-              {nickname ? nickname : "로그인"}
+              {profileData.nickname ? profileData.nickname : "로그인"}
             </div>
           </div>
           {/* 투명한 간격 추가 */}

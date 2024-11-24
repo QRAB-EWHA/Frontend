@@ -124,7 +124,9 @@ const StoredNote = ({
                   원문 보기
                 </div>
                 <div className="flex items-center leading-6 w-[196px] h-[72px] text-wrap  font-semibold text-neutralwhite text-[20px]">
-                  {noteName}
+                  {noteName.length > 40
+                    ? `${noteName.slice(0, 40)}...`
+                    : noteName}
                 </div>
                 <img
                   className="cursor-pointer"

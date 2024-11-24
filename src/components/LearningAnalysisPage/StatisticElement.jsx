@@ -6,6 +6,7 @@ const StatisticElement = ({
   quizNum = "풀이한 퀴즈 문제 수",
   avgCorrectRate = "평균 정답률",
   index = 0,
+  isLast = false,
 }) => {
   const [isTextHovered, setIsTextHovered] = useState(false);
   const [textExceeds, setTextExceeds] = useState(false);
@@ -33,7 +34,7 @@ const StatisticElement = ({
       <div
         className={`flex justify-center items-center gap-[3.5rem] w-[58.75rem] h-[3rem] ${
           index === 0 ? "rounded-t-[0.5rem]" : ""
-        } border-b-[1px] border-gray_100 bg-white`}
+        } ${isLast ? "" : "border-b-[1px] border-gray_100"} bg-white`}
       >
         <div className="relative overflow-hidden w-[10rem]">
           <div
