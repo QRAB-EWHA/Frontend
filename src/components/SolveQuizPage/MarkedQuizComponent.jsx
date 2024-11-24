@@ -2,6 +2,7 @@ import star_1 from "../../assets/solvequizpage/one_star.svg";
 import star_2 from "../../assets/solvequizpage/two_star.svg";
 import star_3 from "../../assets/solvequizpage/three_star.svg";
 import empty_check from "../../assets/solvequizpage/empty_check.svg";
+import check_red from "../../assets/solvequizpage/checked_red.svg";
 import check from "../../assets/solvequizpage/checked.svg";
 import check_gray from "../../assets/solvequizpage/checked_gray.svg";
 import bookmark_checked from "../../assets/solvequizpage/bookmark_checked.svg";
@@ -40,7 +41,13 @@ const MarkedQuizComponent = ({
     <>
       <div className="flex flex-col w-[48.75rem] pb-6 border-b-[0.0625rem] border-gray_100">
         <div className="flex items-center gap-4">
-          <div className="text-xl font-semibold text-neutralBlack">
+          <div
+            className={`${
+              isCorrect
+                ? "text-xl font-semibold text-neutralBlack"
+                : "text-xl font-semibold text-neutralred line-through"
+            }`}
+          >
             {quizNum}번
           </div>
           {difficultyLevel === 1 && <img src={star_1} />}
@@ -53,7 +60,7 @@ const MarkedQuizComponent = ({
           </div>
           <div
             onClick={handleBookmark}
-            className="flex items-center justify-center gap-2 w-20 h-7 rounded-[1rem] bg-seconary_skyblue cursor-pointer"
+            className="flex items-center justify-center gap-2 w-20 h-7 rounded-[1rem] bg-secondary_skyblue cursor-pointer"
           >
             {bookmark ? (
               <img src={bookmark_checked} />
@@ -93,14 +100,14 @@ const MarkedQuizComponent = ({
                     {index === selectedAnswer ? (
                       <img src={check_gray} />
                     ) : index === correctAnswer ? (
-                      <img className="" src={check} />
+                      <img className="" src={check_red} />
                     ) : (
                       <img className="" src={empty_check} />
                     )}
                     <div
                       className={`text-base font-medium  ${
                         index === correctAnswer
-                          ? "text-primary_blue"
+                          ? "text-neutralred"
                           : index === selectedAnswer
                           ? "text-gray-400 line-through"
                           : "text-gray_400"
