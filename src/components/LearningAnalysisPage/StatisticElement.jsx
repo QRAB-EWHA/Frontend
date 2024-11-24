@@ -102,7 +102,7 @@ const StatisticElement = ({
                   : "text-neutralred"
               }`}
             >
-              {avgCorrectRate}%
+              {parseFloat(avgCorrectRate).toFixed(1)}%
             </div>
           </div>
         )}

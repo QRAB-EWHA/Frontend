@@ -49,7 +49,9 @@ const MonthlyAnalyticsComponent = () => {
             <StatisticBox
               boxName="평균 정답률"
               boxSubText="이번 달 풀이한 퀴즈의 평균 정답률이에요."
-              StatisticResult={`${analyticsData.averageAccuracy * 100}%`}
+              StatisticResult={`${(analyticsData.averageAccuracy * 100).toFixed(
+                1
+              )}%`}
             />
           </div>
           <div className="mb-[7.5rem]">
