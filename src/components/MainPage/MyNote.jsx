@@ -55,6 +55,7 @@ const MyNote = ({ mainData }) => {
                   noteIcon={noteIcon1}
                   parentCategory={it.parentCategoryName}
                   childCategory={it.categoryName}
+                  OriginFileOrUrl={it.fileOrUrl}
                 />
               </>
             ))

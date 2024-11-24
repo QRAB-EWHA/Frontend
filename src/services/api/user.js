@@ -9,6 +9,7 @@ export const getProfile = async () => {
     return res;
   } catch (error) {
     console.error("프로필 가져오기 실패", error);
+    return {};
   }
 };
 

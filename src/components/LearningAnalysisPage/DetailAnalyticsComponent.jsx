@@ -1,11 +1,28 @@
+import { useQuery } from "@tanstack/react-query";
+import { getProfile } from "../../services/api/user";
 import useIsBrightModeStore from "../../store/isBrightModeStore";
 import CategoryChart from "./CategoryChart";
 import DetailAnalysisBox from "./DetailAnalysisBox";
 import TreeStatisticBox from "./TreeStatisticBox";
 import WeakCategoryAnalysis from "./WeakCategoryAnalysis";
+import { getWeakCategory } from "../../services/api/analytics";
 
 const DetailAnalyticsComponent = () => {
   const { isBrightMode } = useIsBrightModeStore();
+
+  const {
+    data: profileData,
+    isError,
+    error,
+  } = useQuery({
+    queryKey: ["profileData"],
+    queryFn: getProfile,
+  });
+
+  const { data: weakCategoryData } = useQuery({
+    queryKey: ["weakCategoryData"],
+    queryFn: getWeakCategory,
+  });
 
   return (
     <>
@@ -28,17 +45,17 @@ const DetailAnalyticsComponent = () => {
           </div>
           <div className="flex">
             <span className="text-xl font-medium text-neutralBlack">
-              닉네임 님은
+              {profileData.nickname} 님은
             </span>
             <span className="ml-2 text-xl font-semibold text-primary_blue">
-              카테고리명
+              {weakCategoryData.lowestAccuracyCategory.categoryName}
             </span>
             <span className="ml-1 text-xl font-medium text-neutralBlack">
               카테고리에 가장 취약해요
             </span>
           </div>
           <div className="mb-[2.5rem]">
-            <WeakCategoryAnalysis />
+            <WeakCategoryAnalysis weakCategoryData={weakCategoryData} />
           </div>
           <div className="mb-[10rem]">
             <div className="text-2xl font-semibold text-neutralblack">

@@ -1,25 +1,25 @@
 import { ResponsiveContainer, Treemap } from "recharts";
 
-const categoryQuizGenerations = [
-  {
-    categoryName: "네트워크",
-    totalQuizGenerationCount: 15,
-  },
-  {
-    categoryName: "자료구조",
-    totalQuizGenerationCount: 10,
-  },
-  {
-    categoryName: "운영체제",
-    totalQuizGenerationCount: 8,
-  },
-  {
-    categoryName: "알고리즘",
-    totalQuizGenerationCount: 6,
-  },
-];
+// const categoryQuizGenerations = [
+//   {
+//     categoryName: "네트워크",
+//     totalQuizGenerationCount: 15,
+//   },
+//   {
+//     categoryName: "자료구조",
+//     totalQuizGenerationCount: 10,
+//   },
+//   {
+//     categoryName: "운영체제",
+//     totalQuizGenerationCount: 8,
+//   },
+//   {
+//     categoryName: "알고리즘",
+//     totalQuizGenerationCount: 6,
+//   },
+// ];
 
-const TreeStatisticBox = () => {
+const TreeStatisticBox = ({ weakCategoryData }) => {
   const COLORS = [
     "#2C4CBD",
     "#A0B2EF",
@@ -32,9 +32,9 @@ const TreeStatisticBox = () => {
     "#FFD4B1",
   ];
 
-  const data = categoryQuizGenerations.map((it) => ({
+  const data = weakCategoryData.categoryQuizGenerations.map((it) => ({
     name: it.categoryName,
-    value: it.totalQuizGenerationCount,
+    value: it.quizGenerationCount,
   }));
 
   return (

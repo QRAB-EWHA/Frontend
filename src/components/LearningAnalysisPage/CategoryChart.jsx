@@ -11,6 +11,9 @@ import {
 } from "chart.js";
 import { callback } from "chart.js/helpers";
 import MonthSortingDropdown from "./MonthSortingDropdown";
+import { getCategoryAnalytics } from "../../services/api/analytics";
+import { useQuery } from "@tanstack/react-query";
+import { useState } from "react";
 
 // Chart.js 구성 요소 등록
 ChartJS.register(
@@ -22,38 +25,59 @@ ChartJS.register(
   Legend
 );
 
-const CategoryChart = () => {
-  const categories = [
-    {
-      parentCategoryName: "컴퓨터공학",
-      categoryName: "운영체제",
-    },
-    {
-      parentCategoryName: "디자인",
-      categoryName: "타이포그래피",
-    },
-    {
-      parentCategoryName: "프로그래밍",
-      categoryName: "알고리즘",
-    },
-  ];
+const CategoryChart = ({}) => {
+  const [initialValue, setInitialValue] = useState("전체 기간");
+  const [dropDownClick, setDropDownClick] = useState(false);
+
+  const formattedPeriod = (period) => {
+    if (period === "전체 기간") return "overall";
+    if (period === "최근 1개월") return "1_month";
+    if (period === "최근 3개월") return "3_months";
+    if (period === "최근 6개월") return "6_months ";
+  };
+
+  const {
+    data: categoryAnalyticsData,
+    isError,
+    error,
+  } = useQuery({
+    queryKey: ["categoryAnalyticsData", initialValue],
+    queryFn: () => getCategoryAnalytics(formattedPeriod(initialValue)),
+  });
+
+  // const categories = [
+  //   {
+  //     parentCategoryName: "컴퓨터공학",
+  //     categoryName: "운영체제",
+  //   },
+  //   {
+  //     parentCategoryName: "디자인",
+  //     categoryName: "타이포그래피",
+  //   },
+  //   {
+  //     parentCategoryName: "프로그래밍",
+  //     categoryName: "알고리즘",
+  //   },
+  // ];
   const data = {
-    labels: categories.map(
+    labels: categoryAnalyticsData.map(
       ({ parentCategoryName, categoryName }) =>
-        `${parentCategoryName} - ${categoryName}`
+        `${parentCategoryName ? parentCategoryName : categoryName} ${
+          parentCategoryName ? `- ${categoryName}` : ""
+        }`
     ),
 
     datasets: [
       {
         label: "풀이한 퀴즈 수",
-        data: [80, 50, 70], // 23개의 데이터
+        data: categoryAnalyticsData.map((it) => it.solvedQuizCount),
         backgroundColor: "#d7dbec",
         borderRadius: 8,
         barThickness: 10,
       },
       {
         label: "정답률",
-        data: [50, 35, 60], // 23개의 데이터
+        data: categoryAnalyticsData.map((it) => it.categoryAccuracy * 100),
         backgroundColor: "#1e5eff",
         borderRadius: 8,
         barThickness: 10,
@@ -132,7 +156,12 @@ const CategoryChart = () => {
                 <div className="text-[#5A607F] text-sm font-medium">정답률</div>
               </div>
             </div>
-            <MonthSortingDropdown />
+            <MonthSortingDropdown
+              initialValue={initialValue}
+              setInitialValue={setInitialValue}
+              dropDownClick={dropDownClick}
+              setDropDownClick={setDropDownClick}
+            />
           </div>
           <div className="flex justify-center w-[54.75rem] h-[16rem]">
             <Bar data={data} options={options} />

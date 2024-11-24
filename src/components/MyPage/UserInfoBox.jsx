@@ -77,7 +77,8 @@ const UserInfoBox = ({ profileData, updatedMajor }) => {
               <div className="flex justify-between items-center w-[10rem]">
                 <div className="text-xs font-medium text-gray_400">알림</div>
                 <div className="text-[0.8125rem] text-neutralBlack">
-                  매일 오전 11시
+                  매일 {profileData.ampm === "am" ? "오전" : "오후"}
+                  {""} {profileData.hour}시 {profileData.minute}분
                 </div>
               </div>
             </div>

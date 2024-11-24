@@ -1,5 +1,7 @@
 import { useEffect, useState } from "react";
 import AnalysisCategoryTag from "./AnalysisCategoryTag";
+import { useQuery } from "@tanstack/react-query";
+import { getProfile } from "../../services/api/user";
 
 const data = {
   userAnalysis:
@@ -48,6 +50,15 @@ const data = {
 const DetailAnalysisBox = () => {
   const [selectedCategory, setSelectedCategory] = useState("");
 
+  const {
+    data: profileData,
+    isError,
+    error,
+  } = useQuery({
+    queryKey: ["profileData"],
+    queryFn: getProfile,
+  });
+
   useEffect(() => {
     if (data.weakCategories.length > 0) {
       setSelectedCategory(data.weakCategories[0].finalCategoryName);
@@ -58,7 +69,8 @@ const DetailAnalysisBox = () => {
     <>
       <div className="flex flex-col mt-4 w-[58.75rem] text-base font-medium text-neutralBlack">
         <p>
-          ooo님은 <span className="text-primary_blue">컴퓨터공학과</span>와{" "}
+          {profileData.nickname}님은 {""}
+          <span className="text-primary_blue">컴퓨터공학과</span>와{" "}
           <span className="text-primary_blue">외국어</span> 분야에서 전반적으로
           높은 이해도를 보이고 있습니다.
         </p>

@@ -3,10 +3,22 @@ import useIsBrightModeStore from "../../store/isBrightModeStore";
 import RecordingCalendar from "./RecordingCalendar";
 import StatisticBox from "./StatisticBox";
 import StatisticTable from "./StatisticTable";
+import { getThisMonthData } from "../../services/api/analytics";
+import { useQuery } from "@tanstack/react-query";
 
 const MonthlyAnalyticsComponent = () => {
   const { isBrightMode } = useIsBrightModeStore();
+  const year = new Date().getFullYear();
+  const month = new Date().getMonth() + 1;
 
+  const {
+    data: analyticsData,
+    error,
+    isError,
+  } = useQuery({
+    queryKey: ["analyticsData", year, month],
+    queryFn: () => getThisMonthData(year, month),
+  });
   return (
     <>
       <div
@@ -27,17 +39,17 @@ const MonthlyAnalyticsComponent = () => {
             <StatisticBox
               boxName="이번 달 학습일"
               boxSubText="퀴즈를 풀이한 날짜를 기준으로 측정됩니다."
-              StatisticResult="17일"
+              StatisticResult={analyticsData.learningDays}
             />
             <StatisticBox
               boxName="풀이한 퀴즈 문제 수"
               boxSubText="이번 달 풀이한 퀴즈 문제 수를 확인하세요."
-              StatisticResult="89문제"
+              StatisticResult={analyticsData.solvedQuizCount}
             />
             <StatisticBox
               boxName="평균 정답률"
               boxSubText="이번 달 풀이한 퀴즈의 평균 정답률이에요."
-              StatisticResult="83.7%"
+              StatisticResult={`${analyticsData.averageAccuracy * 100}%`}
             />
           </div>
           <div className="mb-[7.5rem]">
