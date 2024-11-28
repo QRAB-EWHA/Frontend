@@ -90,7 +90,7 @@ const SolveQuizComponent = () => {
     console.log("resolve");
     const resultData = {
       quizSetId: quizSetId,
-      answers: questionsData.quizzes.map((quiz, index) => ({
+      answers: resolveQuizData.quizzes.map((quiz, index) => ({
         quizId: quiz.quizId,
         selectedAnswer: selectedAnswers[index],
       })),
