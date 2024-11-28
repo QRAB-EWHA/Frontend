@@ -39,7 +39,7 @@ const TotalView = ({ analyticsData }) => {
               boxSubText="이번 달 풀이한 퀴즈의 평균 정답률이에요."
               StatisticResult={`${(analyticsData.averageAccuracy * 100).toFixed(
                 1
-              )}`}
+              )}%`}
             />
           </div>
           <div className="mb-[15rem]">
