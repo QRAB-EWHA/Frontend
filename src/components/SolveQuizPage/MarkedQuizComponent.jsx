@@ -9,7 +9,7 @@ import bookmark_checked from "../../assets/solvequizpage/bookmark_checked.svg";
 import bookmark_not_checked from "../../assets/solvequizpage/bookmark_not_checked.svg";
 
 import { useEffect, useState } from "react";
-import { postBookmarks } from "../../services/api/solveQuiz";
+import { deleteBookmarkQuiz, postBookmarks } from "../../services/api/bookmark";
 
 const MarkedQuizComponent = ({
   quizNum = "1",
@@ -26,6 +26,7 @@ const MarkedQuizComponent = ({
   correctAnswer,
   explanation,
   isCorrect,
+  quizId,
 }) => {
   const [checked, setChecked] = useState(null);
   const [bookmark, setBookmark] = useState(false);
@@ -36,10 +37,19 @@ const MarkedQuizComponent = ({
   };
 
   const handleBookmark = async () => {
+    const bookmarkData = {
+      quizId: quizId,
+    };
     setBookmark(!bookmark);
-    const res = await postBookmarks();
-    console.log(res);
+    if (bookmark) {
+      const res = await deleteBookmarkQuiz(quizId);
+      console.log(quizId);
+    } else if (!bookmark) {
+      const res = await postBookmarks(bookmarkData);
+      console.log(res);
+    }
   };
+
   return (
     <>
       <div className="flex flex-col w-[48.75rem] pb-6 border-b-[0.0625rem] border-gray_100">
@@ -53,9 +63,10 @@ const MarkedQuizComponent = ({
           >
             {quizNum}번
           </div>
-          {difficultyLevel === 1 && <img src={star_1} />}
-          {difficultyLevel === 2 && <img src={star_2} />}
-          {difficultyLevel === 3 && <img src={star_3} />}
+
+          {difficultyLevel && difficultyLevel === 1 && <img src={star_1} />}
+          {difficultyLevel && difficultyLevel === 2 && <img src={star_2} />}
+          {difficultyLevel && difficultyLevel === 3 && <img src={star_3} />}
         </div>
         <div className="flex justify-between pl-2 pr-6">
           <div className="mt-[0.73rem] mb-6 text-base font-medium text-neutralBlack">

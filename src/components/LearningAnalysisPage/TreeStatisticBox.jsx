@@ -31,11 +31,13 @@ const TreeStatisticBox = ({ weakCategoryData }) => {
     "#A4A778",
     "#FFD4B1",
   ];
-
-  const data = weakCategoryData.categoryQuizGenerations.map((it) => ({
-    name: it.categoryName,
-    value: it.quizGenerationCount,
-  }));
+  const data = weakCategoryData.categoryQuizGenerations
+    .filter((it) => it.quizGenerationCount > 0) // 0인 항목 필터링
+    .map((it, idx) => ({
+      name: it.categoryName,
+      value: it.quizGenerationCount,
+      color: COLORS[idx % COLORS.length],
+    }));
 
   return (
     <>
@@ -44,7 +46,7 @@ const TreeStatisticBox = ({ weakCategoryData }) => {
           <Treemap
             data={data}
             dataKey="value"
-            content={({ x, y, width, height, name, value, index }) => (
+            content={({ x, y, width, height, name, value, color }) => (
               <g>
                 <rect
                   x={x}
@@ -52,7 +54,7 @@ const TreeStatisticBox = ({ weakCategoryData }) => {
                   width={width}
                   height={height}
                   style={{
-                    fill: COLORS[Math.floor(index % 6)],
+                    fill: color,
                   }}
                 />
                 <text

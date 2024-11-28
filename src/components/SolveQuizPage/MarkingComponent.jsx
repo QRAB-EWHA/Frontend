@@ -55,8 +55,8 @@ const MarkingComponent = () => {
                   multipleChoice={quiz.choices}
                   selectedAnswer={quiz.selectedAnswer}
                   correctAnswer={quiz.correctAnswer}
-                  explanation={quiz.explanation}
                   isCorrect={quiz.isCorrect}
+                  quizId={quiz.quizId}
                 />
 
                 <Commentary

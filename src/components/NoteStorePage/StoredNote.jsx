@@ -22,6 +22,7 @@ const StoredNote = ({
   quizSolvePage = false,
   page,
   isAllQuizSet = false,
+  bookmark = false,
 }) => {
   const [isHovered, setIsHovered] = useState(false);
   const { setIsNoteData, setIsNoteSummaryModal } = useIsNoteSummaryModalStore();
@@ -65,6 +66,10 @@ const StoredNote = ({
     setIsCreateQuizModal(true);
   };
 
+  const handleBookmark = () => {
+    navigate(`/quizlab/bookmark/${noteId}`);
+  };
+
   return (
     <div
       onMouseEnter={() => setIsHovered(true)}
@@ -81,27 +86,35 @@ const StoredNote = ({
                   : noteName}
               </div>
               <div className="flex gap-[8px] mt-[8px]">
-                {!parentCategory ? (
+                {!bookmark && !parentCategory ? (
                   <CategoryTag tagText={childCategory} />
                 ) : (
-                  <>
-                    <CategoryTag tagText={parentCategory} />
-                    <CategoryTag tagText={childCategory} />
-                  </>
+                  !bookmark && (
+                    <>
+                      <CategoryTag tagText={parentCategory} />
+                      <CategoryTag tagText={childCategory} />
+                    </>
+                  )
                 )}
               </div>
             </div>
             <div className="ml-[88px] mt-[15px]">
               <QuizButton
                 buttonText={
-                  quizSolvePage
+                  bookmark
+                    ? "북마크 퀴즈 보기"
+                    : quizSolvePage
                     ? "퀴즈 세트 보기"
                     : quizGenerationCount > 0
                     ? "퀴즈 재생성 하기"
                     : "퀴즈 생성하기"
                 }
                 handleQuizButton={
-                  quizSolvePage ? handleShowQuizSet : handleCreateQuiz
+                  bookmark
+                    ? handleBookmark
+                    : quizSolvePage
+                    ? handleShowQuizSet
+                    : handleCreateQuiz
                 }
                 noteName={noteName}
                 noteId={noteId}
@@ -152,7 +165,7 @@ const StoredNote = ({
         <div
           className={`flex-1 ${isHovered ? "bg-gray_500" : "bg-[#F4F6FA]"} `}
         >
-          {!isHovered && (
+          {!bookmark && !isHovered && (
             <>
               <div className="ml-5">
                 <div className=" mt-3 w-[16.375rem] leading-4 text-wrap font-medium text-gray_400 text-[14px] line-clamp-2">

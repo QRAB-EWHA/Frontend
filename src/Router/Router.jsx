@@ -5,7 +5,6 @@ import Login from "../pages/AuthPage/Login";
 import QuizLab from "../pages/QuizLabPage/QuizLab";
 import CreateQuizPage from "../pages/QuizLabPage/CreateQuizPage";
 import QuizStoragePage from "../pages/QuizLabPage/QuizStoragePage";
-import BookMarkQuizPage from "../pages/QuizLabPage/BookMarkQuizPage";
 import SolveQuizPage from "../pages/SolveQuizPage/SolveQuizPage";
 import QuizSetPage from "../pages/SolveQuizPage/QuizSetpage";
 import StoreNotePage from "../pages/NoteStorePage/StoreNotePage";
@@ -22,6 +21,8 @@ import ShowQuizSetPage from "../pages/QuizLabPage/ShowQuizSetPage";
 import ShowAllQuizPage from "../pages/QuizLabPage/ShowAllQuizPage";
 import ResolveQuizPage from "../pages/SolveQuizPage/ReSolveQuizPage";
 import SolvedTotalQuizPage from "../pages/SolveQuizPage/SolvedTotalQuizPage";
+import BookMarkPage from "../pages/QuizLabPage/BookMarkPage";
+import BookMarkQuizPage from "../pages/QuizLabPage/BookMarkQuizPage";
 
 const Router = () => (
   <RouterProvider
@@ -59,6 +60,10 @@ const Router = () => (
           },
           {
             path: "/quizlab/bookMark",
+            element: <ProtectedRoute element={<BookMarkPage />} />,
+          },
+          {
+            path: "/quizlab/bookmark/:id",
             element: <ProtectedRoute element={<BookMarkQuizPage />} />,
           },
           {

@@ -1,34 +1,28 @@
-import QuizLabContainer from "../../components/QuizLabPage/QuizLabContainer";
-import CreateQuizModal from "../../components/QuizLabPage/Modal/CreateQuizModal";
-import useIsCreateQuizModalStore from "../../store/isCreateQuizModalStore";
 import { useQuery } from "@tanstack/react-query";
-import { getCategory } from "../../services/api/noteStore";
 import PageDefauleTemplate from "../../components/Common/PageDefauleTemplate";
 import BookMarkComponent from "../../components/QuizLabPage/BookMarkComponent";
+import { getBookmarkQuizByNote } from "../../services/api/bookmark";
+import { useParams } from "react-router-dom";
+import NavBar from "../../components/Common/NavBar";
+import BookMarkQuizComponent from "../../components/QuizLabPage/BookMarkQuizComponent";
 
 const BookMarkQuizPage = () => {
+  const { id } = useParams();
+
   const {
-    isError: isCategoryError,
-    data: categoryData,
-    error: categoryError,
+    data: bookmarkQuizByNote,
+    isError,
+    error,
   } = useQuery({
-    queryKey: ["getCategory"],
-    queryFn: getCategory,
+    queryKey: ["bookmarkQuizByNote", id],
+    queryFn: () => getBookmarkQuizByNote(id),
   });
-
-  if (isCategoryError) {
-    console.error("Error fetching categories:", categoryError);
-    return <div>오류 발생: {categoryError.message}</div>;
-  }
-
-  if (!categoryData) {
-    return <div>데이터가 없습니다.</div>;
-  }
   return (
     <>
-      <PageDefauleTemplate pageName="퀴즈 연구소">
-        <BookMarkComponent categoryData={categoryData} />
-      </PageDefauleTemplate>
+      <div className={`w-full h-screen bg-neutralwhite `}>
+        <NavBar />
+        <BookMarkQuizComponent bookmarkQuizByNote={bookmarkQuizByNote} />
+      </div>
     </>
   );
 };
