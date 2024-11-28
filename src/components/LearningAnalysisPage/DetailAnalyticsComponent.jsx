@@ -45,10 +45,10 @@ const DetailAnalyticsComponent = () => {
           </div>
           <div className="flex">
             <span className="text-xl font-medium text-neutralBlack">
-              {profileData.nickname} 님은
+              {profileData?.nickname} 님은
             </span>
             <span className="ml-2 text-xl font-semibold text-primary_blue">
-              {weakCategoryData.lowestAccuracyCategory.categoryName}
+              {weakCategoryData?.lowestAccuracyCategory?.categoryName}
             </span>
             <span className="ml-1 text-xl font-medium text-neutralBlack">
               카테고리에 가장 취약해요

@@ -9,6 +9,7 @@ import bookmark_checked from "../../assets/solvequizpage/bookmark_checked.svg";
 import bookmark_not_checked from "../../assets/solvequizpage/bookmark_not_checked.svg";
 
 import { useEffect, useState } from "react";
+import { postBookmarks } from "../../services/api/solveQuiz";
 
 const MarkedQuizComponent = ({
   quizNum = "1",
@@ -34,8 +35,10 @@ const MarkedQuizComponent = ({
     onAnswered(true);
   };
 
-  const handleBookmark = () => {
+  const handleBookmark = async () => {
     setBookmark(!bookmark);
+    const res = await postBookmarks();
+    console.log(res);
   };
   return (
     <>

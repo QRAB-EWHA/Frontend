@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import Button from "../Common/Button";
 import QuizButtonComponent from "./Button/QuizButtonComponent";
 import NoteTitleComponent from "./NoteTitleComponent";
@@ -10,6 +10,7 @@ import {
   postResolveQuizResult,
 } from "../../services/api/solveQuiz";
 import { useQuery } from "@tanstack/react-query";
+import useIsBrightModeStore from "../../store/isBrightModeStore";
 
 const SolveQuizComponent = () => {
   const navigate = useNavigate();
@@ -17,6 +18,10 @@ const SolveQuizComponent = () => {
   const { quizSetId } = useParams();
   const location = useLocation();
   const resolveQuizData = location.state?.resultData;
+  const { setIsBrightMode } = useIsBrightModeStore();
+  useEffect(() => {
+    setIsBrightMode(true);
+  }, []);
 
   const {
     data: questionsData,
@@ -63,6 +68,8 @@ const SolveQuizComponent = () => {
 
   // 서버에 답변 전송 (생성 후 처음 푼 경우 채점)
   const handleMarking = async () => {
+    console.log("solve");
+
     const resultData = {
       quizSetId: quizSetId,
       answers: questionsData.quizzes.map((quiz, index) => ({
@@ -72,7 +79,7 @@ const SolveQuizComponent = () => {
     };
     console.log(resultData);
     const res = await postQuizResult(quizSetId, resultData);
-
+    console.log(res);
     navigate(`/solvequiz/quizset/${id}/marked/${quizSetId}`, {
       state: { resultData: res }, // 응답 데이터를 함께 전달
     });
@@ -80,6 +87,7 @@ const SolveQuizComponent = () => {
 
   //서버에 답변 전송 (오답 퀴즈 채점)
   const handleResolveMarking = async () => {
+    console.log("resolve");
     const resultData = {
       quizSetId: quizSetId,
       answers: questionsData.quizzes.map((quiz, index) => ({
@@ -87,8 +95,8 @@ const SolveQuizComponent = () => {
         selectedAnswer: selectedAnswers[index],
       })),
     };
-    console.log(resultData);
     const res = await postResolveQuizResult(quizSetId, resultData);
+    console.log(res);
 
     navigate(`/solvequiz/quizset/${id}/marked/${quizSetId}`, {
       state: { resultData: res }, // 응답 데이터를 함께 전달

@@ -82,7 +82,7 @@ const Router = () => (
             element: <ProtectedRoute element={<SolvedTotalQuizPage />} />,
           },
           {
-            path: "/resolvequiz/quizset/:quizSetId",
+            path: "/resolvequiz/quizset/:id/resolving/:quizSetId",
             element: <ProtectedRoute element={<ResolveQuizPage />} />,
           },
 

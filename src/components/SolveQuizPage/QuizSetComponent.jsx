@@ -19,7 +19,6 @@ const QuizSetComponent = () => {
   //solveQuiz는 퀴즈 풀기 페이지에서 노트 호버링 시 퀴즈 세트 보기 버튼 눌렀을 때 핸들러를 구분하기 위함
   //퀴즈 풀기 페이지에서 들어온 거라면 solveQuiz=true, 퀴즈 연구소에서 퀴즈 생성할 때는 solveQuiz=false
   const { isAllQuizSet } = location.state || false;
-  console.log("sdfsff", isAllQuizSet);
 
   const {
     isError: isUnsolvedQuizDataError,
@@ -94,7 +93,7 @@ const QuizSetComponent = () => {
                   <QuizContainer
                     key={index}
                     noteName={unsolvedQuizData.noteTitle}
-                    noteId={it.id}
+                    noteId={it.noteId}
                     totalQuizNum={it.totalQuestions}
                     createdAt={it.createdAt}
                     solvedAt={it.solvedAt}
@@ -109,7 +108,7 @@ const QuizSetComponent = () => {
                     key={index}
                     solveQuiz={true}
                     noteName={unsolvedQuizData.noteTitle}
-                    noteId={it.id}
+                    noteId={it.noteId}
                     totalQuizNum={it.totalQuestions}
                     createdAt={it.createdAt}
                     noteIcon={noteIcon2}

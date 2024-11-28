@@ -1,14 +1,25 @@
-import { useLocation } from "react-router-dom";
+import { useLocation, useNavigate, useParams } from "react-router-dom";
 import MarkedResultComponent from "./MarkedResultComponent";
 import QuizComponent from "./QuizComponent";
 import Commentary from "./Commentary";
 import QuizButtonComponent from "./Button/QuizButtonComponent";
 import MarkedQuizComponent from "./MarkedQuizComponent";
+import { getResolveQuiz } from "../../services/api/solveQuiz";
 
 const MarkingComponent = () => {
   const location = useLocation();
+  const navigate = useNavigate();
   const resultData = location.state?.resultData;
-  console.log(resultData);
+  const { id, quizSetId } = useParams();
+
+  const handleReSolveQuiz = async () => {
+    const resolveQuizData = await getResolveQuiz(quizSetId);
+    console.log(resolveQuizData);
+    navigate(`/resolvequiz/quizset/${id}/resolving/${quizSetId}`, {
+      state: { resultData: resolveQuizData },
+    });
+  };
+
   return (
     <>
       <div className="flex justify-center w-full h-auto bg-neutralwhite">
@@ -58,7 +69,10 @@ const MarkingComponent = () => {
             ))}
           </div>
           <div className="flex justify-center my-16">
-            <QuizButtonComponent text="오답 다시 풀기" />
+            <QuizButtonComponent
+              onClick={handleReSolveQuiz}
+              text="오답 다시 풀기"
+            />
           </div>
         </div>
       </div>

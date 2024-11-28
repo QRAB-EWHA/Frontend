@@ -20,7 +20,7 @@ const QuizContainer = ({
   const [isHovered, setIsHovered] = useState(false);
   const navigate = useNavigate();
   const { setIsBrightMode } = useIsBrightModeStore();
-
+  console.log(noteId);
   const formatDate = (dateString) => {
     const date = new Date(dateString);
     const month = date.getMonth() + 1;
@@ -36,7 +36,7 @@ const QuizContainer = ({
   const handleReSolveQuiz = async () => {
     const resolveQuizData = await getResolveQuiz(quizsetId);
     console.log(resolveQuizData);
-    navigate(`/resolvequiz/quizset/${quizsetId}`, {
+    navigate(`/resolvequiz/quizset/${noteId}/resolving/${quizsetId}`, {
       state: { resultData: resolveQuizData },
     });
   };
