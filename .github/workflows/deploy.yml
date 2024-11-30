@@ -20,7 +20,7 @@ jobs:
         env:
           API_TOKEN_GITHUB: ${{ secrets.AUTO_ACTIONS }} 
         with:
-          source-directory: './bookduck/output'
+          source-directory: 'output'
           destination-github-username: YoungseoChoi23
           destination-repository-name: Frontend
           user-email: ${{ secrets.EMAIL }} 
