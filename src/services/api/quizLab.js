@@ -65,3 +65,6 @@ export const getSolvedTotalQuiz = async (quizSetId) => {
     console.error("풀었던 모든 퀴즈 보기 조회 실패", error);
   }
 };
+
+
+

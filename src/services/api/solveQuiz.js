@@ -64,13 +64,5 @@ export const postQuizResult = async (quizSetId, resultData) => {
   }
 };
 
-//북마크 생성
-export const postBookmarks = async (bookmarkData) => {
-  try {
-    const data = await post(`/bookmarks`, bookmarkData);
-    console.log("북마크 성공", data);
-    return data;
-  } catch (error) {
-    console.error("북마크 실패", error);
-  }
-};
+
+

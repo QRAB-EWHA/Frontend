@@ -31,6 +31,7 @@ const TreeStatisticBox = ({ weakCategoryData }) => {
     "#A4A778",
     "#FFD4B1",
   ];
+
   const data = weakCategoryData.categoryQuizGenerations
     .filter((it) => it.quizGenerationCount > 0) // 0인 항목 필터링
     .map((it, idx) => ({

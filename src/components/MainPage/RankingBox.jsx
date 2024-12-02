@@ -7,7 +7,7 @@ const RankingBox = ({ mainData }) => {
           이번 달 가장 많은 퀴즈를 푼 친구
         </div>
         <div className="flex flex-col gap-[0.4rem] h-[9.875rem] overflow-auto custom-scrollbar-skyblue">
-          {mainData.friendScoreDTOS.map((it, index) => (
+          {mainData.scoreNicknames.map((it, index) => (
             <div className="flex items-center gap-4 ">
               <div className="text-xl font-semibold text-gray_300">
                 {index + 1}
