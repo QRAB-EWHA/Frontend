@@ -84,7 +84,7 @@ const MainComponent = () => {
         </div>
       </div>
 
-      {/* <div className="flex flex-col items-center gap-8 w-full h-screen min-h-[58.25rem] px-10 pt-[2.5rem] bg-white">
+      <div className="flex flex-col items-center gap-8 w-full h-screen min-h-[58.25rem] px-10 pt-[2.5rem] bg-white">
         <div className="flex flex-col gap-2">
           <div className="text-xl font-semibold text-neutralBlack">
             최근 틀린 퀴즈
@@ -96,7 +96,7 @@ const MainComponent = () => {
             <SolvedQuizComponent mainData={mainData} />
           </div>
         </div>
-      </div> */}
+      </div>
     </>
   );
 };
