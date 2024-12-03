@@ -47,9 +47,8 @@ const data = {
   ],
 };
 
-const DetailAnalysisBox = () => {
+const DetailAnalysisBox = ({ detailedAnalyticsData }) => {
   const [selectedCategory, setSelectedCategory] = useState("");
-
   const {
     data: profileData,
     isError,
@@ -60,17 +59,19 @@ const DetailAnalysisBox = () => {
   });
 
   useEffect(() => {
-    if (data.weakCategories.length > 0) {
-      setSelectedCategory(data.weakCategories[0].finalCategoryName);
+    if (detailedAnalyticsData.weakCategories.length > 0) {
+      setSelectedCategory(
+        detailedAnalyticsData.weakCategories[0].finalCategoryName
+      );
     }
   }, []);
 
   return (
     <>
       <div className="flex flex-col mt-4 w-[58.75rem] text-base font-medium text-neutralBlack">
-        <p>
+        {/* <p>
           {profileData.nickname}님은 {""}
-          <span className="text-primary_blue">컴퓨터공학과</span>와{" "}
+          <span className="text-primary_blue">{getDetailedAnalysis.}</span>와{" "}
           <span className="text-primary_blue">외국어</span> 분야에서 전반적으로
           높은 이해도를 보이고 있습니다.
         </p>
@@ -83,19 +84,23 @@ const DetailAnalysisBox = () => {
         <br />
         <p>
           아래의 추천 학습을 참고하여 취약한 분야를 추가적으로 학습해 보세요.
-        </p>
+        </p> */}
+        <div className="w-[58.75rem] whitespace-normal break-words leading-relaxed">
+          {detailedAnalyticsData.userAnalysis}
+        </div>
       </div>
       <div className="w-[58.75rem] mt-8 mb-4 border-t-[1px] border-gray_100"></div>
       <div className="flex gap-3 mb-[2.5rem]">
-        {data.weakCategories.map((it, index) => (
+        {detailedAnalyticsData.weakCategories.map((it, index) => (
           <AnalysisCategoryTag
+            key={index}
             isActive={selectedCategory === it.finalCategoryName}
             categoryName={it.finalCategoryName}
             setSelectedCategory={setSelectedCategory}
           />
         ))}
       </div>
-      {data.weakCategories.map(
+      {detailedAnalyticsData.weakCategories.map(
         (it, index) =>
           selectedCategory === it.finalCategoryName && (
             <div className="flex flex-col gap-16">
@@ -103,7 +108,9 @@ const DetailAnalysisBox = () => {
                 <div className="text-xl font-semibold text-gray_400">
                   공부 팁
                 </div>
-                <div className="text-base font-medium">{it.studyTips}</div>
+                <div className="text-base font-medium whitespace-normal break-words leading-relaxed ">
+                  {it.studyTips}
+                </div>
               </div>
               <div className="flex flex-col gap-6">
                 <div className="text-xl font-semibold text-gray_400">
@@ -115,14 +122,20 @@ const DetailAnalysisBox = () => {
                       key={index}
                       className="flex flex-col justify-center gap-2 w-[28.75rem] h-[5.875rem] px-8 rounded-[0.5rem] bg-white shadow-custom"
                     >
-                      <div className="text-base font-medium">{ref.title}</div>
+                      <div className="text-base font-medium">
+                        {ref.title.length > 50
+                          ? `${ref.title.slice(0, 50)}...`
+                          : ref.title}
+                      </div>
                       <div className="text-[0.8125rem] text-gray_400">
                         <a
                           href={ref.link}
                           target="_blank"
                           rel="noopener noreferrer"
                         >
-                          {ref.link}
+                          {ref.link.length > 50
+                            ? `${ref.link.slice(0, 50)}...`
+                            : ref.link}
                         </a>
                       </div>
                     </div>

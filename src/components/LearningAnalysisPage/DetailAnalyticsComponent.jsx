@@ -8,10 +8,24 @@ import WeakCategoryAnalysis from "./WeakCategoryAnalysis";
 import {
   getDetailedAnalysis,
   getWeakCategory,
+  postDetailedAnalysis,
 } from "../../services/api/analytics";
+import { useEffect, useState } from "react";
 
 const DetailAnalyticsComponent = () => {
   const { isBrightMode } = useIsBrightModeStore();
+  const [detailedData, setDetailedData] = useState();
+
+  useEffect(() => {
+    if (!detailedData) {
+      const createAnalysis = async () => {
+        const res = await postDetailedAnalysis();
+        setDetailedData(res);
+        console.log(res);
+      };
+      createAnalysis();
+    }
+  }, []);
 
   const {
     data: profileData,
@@ -71,7 +85,7 @@ const DetailAnalyticsComponent = () => {
             <div className="text-2xl font-semibold text-neutralblack">
               상세 분석
             </div>
-            <DetailAnalysisBox />
+            <DetailAnalysisBox detailedAnalyticsData={detailedAnalyticsData} />
           </div>
         </div>
       </div>
