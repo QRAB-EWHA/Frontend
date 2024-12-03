@@ -5,7 +5,10 @@ import CategoryChart from "./CategoryChart";
 import DetailAnalysisBox from "./DetailAnalysisBox";
 import TreeStatisticBox from "./TreeStatisticBox";
 import WeakCategoryAnalysis from "./WeakCategoryAnalysis";
-import { getWeakCategory } from "../../services/api/analytics";
+import {
+  getDetailedAnalysis,
+  getWeakCategory,
+} from "../../services/api/analytics";
 
 const DetailAnalyticsComponent = () => {
   const { isBrightMode } = useIsBrightModeStore();
@@ -23,6 +26,13 @@ const DetailAnalyticsComponent = () => {
     queryKey: ["weakCategoryData"],
     queryFn: getWeakCategory,
   });
+
+  const { data: detailedAnalyticsData } = useQuery({
+    queryKey: ["detailedAnalyticsData"],
+    queryFn: getDetailedAnalysis,
+  });
+
+  console.log(detailedAnalyticsData);
 
   return (
     <>

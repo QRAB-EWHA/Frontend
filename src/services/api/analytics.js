@@ -45,3 +45,14 @@ export const getWeakCategory = async () => {
     return {};
   }
 };
+
+export const getDetailedAnalysis = async () => {
+  try {
+    const data = await get(`/analysis/detailed-analysis/latest`);
+    console.log(data, "상세 분석 조회 성공");
+    return data;
+  } catch (error) {
+    console.error(console.error("상세 분석 조회 실패", error));
+    return {};
+  }
+};

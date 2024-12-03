@@ -12,9 +12,7 @@ const RankingBox = ({ mainData }) => {
               <div className="text-xl font-semibold text-gray_300">
                 {index + 1}
               </div>
-              <div className="text-base font-medium text-white">
-                {it.friendNickname}
-              </div>
+              <div className="text-base font-medium text-white">{it}</div>
             </div>
           ))}
         </div>

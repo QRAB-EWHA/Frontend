@@ -36,7 +36,7 @@ const NavBar = () => {
   };
 
   const handleSubNavbar = () => {
-    if (nickname) {
+    if (profileData.nickname) {
       localStorage.removeItem("accessToken");
       window.location.reload();
     } else {
@@ -185,9 +185,9 @@ const NavBar = () => {
                   className="hover:text-primary_blue hover:underline cursor-pointer"
                   onClick={handleSubNavbar}
                 >
-                  {nickname ? "로그아웃" : "로그인"}
+                  {profileData.nickname ? "로그아웃" : "로그인"}
                 </div>
-                {!nickname && (
+                {!profileData.nickname && (
                   <>
                     <div className="w-[56px] h-[1px] my-2 bg-gray_100"></div>
 
