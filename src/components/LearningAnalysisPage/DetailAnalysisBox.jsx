@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import AnalysisCategoryTag from "./AnalysisCategoryTag";
 import { useQuery } from "@tanstack/react-query";
 import { getProfile } from "../../services/api/user";
-
+import toggle from "../../assets/analysis/toggle.svg";
 const data = {
   userAnalysis:
     "(사용자이름) 님은 컴퓨터 공학과 수학 카테고리에서 강점을 보이고 있어요. 특히, 네트워크와 운영체제 관련 문제에서 높은 정답률을 보이며, 이를 잘 이해하고 있네요. 통계와 확률 관련 문제에서도 높은 이해도를 보이고 있어요. 반면, 알고리즘과 물리학 카테고리에서는 낮은 정답률을 보이고 있어요. 특히 정렬과 검색 알고리즘에서 어려움을 겪고 있는 것으로 보이네요. 작용 반작용 법칙, 관성 법칙에 대한 이해도 또한 다소 낮아요.",
@@ -49,6 +49,7 @@ const data = {
 
 const DetailAnalysisBox = ({ detailedAnalyticsData }) => {
   const [selectedCategory, setSelectedCategory] = useState("");
+  const [toggleStates, setToggleStates] = useState({}); // 각 항목의 토글 상태를 관리
   const {
     data: profileData,
     isError,
@@ -65,6 +66,13 @@ const DetailAnalysisBox = ({ detailedAnalyticsData }) => {
       );
     }
   }, []);
+
+  const handleToggle = (index) => {
+    setToggleStates((prev) => ({
+      ...prev,
+      [index]: !prev[index],
+    }));
+  };
 
   return (
     <>
@@ -117,27 +125,53 @@ const DetailAnalysisBox = ({ detailedAnalyticsData }) => {
                   추천 자료
                 </div>
                 <div className="flex gap-5 ">
-                  {it.references.map((ref, index) => (
-                    <div
-                      key={index}
-                      className="flex flex-col justify-center gap-2 w-[28.75rem] h-[5.875rem] px-8 rounded-[0.5rem] bg-white shadow-custom"
-                    >
-                      <div className="text-base font-medium">
-                        {ref.title.length > 50
-                          ? `${ref.title.slice(0, 50)}...`
-                          : ref.title}
+                  {it.references.map((ref, refIndex) => (
+                    <div className="flex flex-col gap-5">
+                      <div
+                        key={refIndex}
+                        className="flex flex-col justify-center gap-2 w-[28.75rem] h-[5.875rem] px-8 rounded-[0.5rem] bg-white shadow-custom"
+                      >
+                        <div className="text-base font-medium">
+                          {ref.title.length > 50
+                            ? `${ref.title.slice(0, 50)}...`
+                            : ref.title}
+                        </div>
+                        <div className="text-[0.8125rem] text-gray_400">
+                          <a
+                            href={ref.link}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                          >
+                            {ref.link.length > 50
+                              ? `${ref.link.slice(0, 50)}...`
+                              : ref.link}
+                          </a>
+                        </div>
                       </div>
-                      <div className="text-[0.8125rem] text-gray_400">
-                        <a
-                          href={ref.link}
-                          target="_blank"
-                          rel="noopener noreferrer"
-                        >
-                          {ref.link.length > 50
-                            ? `${ref.link.slice(0, 50)}...`
-                            : ref.link}
-                        </a>
+                      <div
+                        onClick={() => handleToggle(`${index}-${refIndex}`)} // 유니크한 키로 토글 관리
+                        className="flex gap-3 cursor-pointer"
+                      >
+                        <img
+                          src={toggle}
+                          className={`w-5 transition-transform duration-300 ${
+                            toggleStates[`${index}-${refIndex}`]
+                              ? "rotate-180"
+                              : "rotate-90"
+                          }`}
+                          alt="toggle"
+                        />
+                        {!toggleStates[`${index}-${refIndex}`] && (
+                          <div className="text-gray-400">
+                            토글을 클릭해보세요
+                          </div>
+                        )}
                       </div>
+                      {toggleStates[`${index}-${refIndex}`] && (
+                        <pre className="w-[28.75rem] whitespace-pre-wrap break-words leading-relaxed">
+                          {ref.content}
+                        </pre>
+                      )}
                     </div>
                   ))}
                 </div>
