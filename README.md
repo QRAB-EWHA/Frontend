@@ -23,6 +23,7 @@ clone 후에는 프로젝트 경로(Frontend)로 이동한 후, 종속성을 설
 ``
 cd Frontend // 프로젝트 디렉토리로 이동 
 ``
+<br>
 ``
 npm install // npm 패키지 매니저 설치
 ``
