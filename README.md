@@ -16,29 +16,35 @@ QRAB의 프론트엔드 프레임워크는 React.js로, 터미널(맥 or 리눅�
 
 이 레포지토리는 해당 명령어로 git clone 가능합니다.
 
-`git clone https://github.com/QRAB-EWHA/Frontend.git`
+```
+git clone https://github.com/QRAB-EWHA/Frontend.git
+```
 
 clone 후에는 프로젝트 경로(Frontend)로 이동한 후, 종속성을 설치해주어야 합니다. <br> 해당 프로젝트는 패키지 매니저로 npm을 사용하고 있기 때문에 npm을 설치해주어야 합니다.
 
-`
+```
 cd Frontend // 프로젝트 디렉토리로 이동 
-`
+```
 <br>
-``
+```
 npm install // npm 패키지 매니저 설치
-``
+```
 
 이후 프로젝트 루트 디렉토리에 .env 파일을 추가하고 아래 환경변수를 추가해주세요.
 
-`REACT_APP_SERVER_URL = https://qrab.site`
+```
+REACT_APP_SERVER_URL = https://qrab.site
+```
 
 터미널에서는 아래와 같이 환경변수 파일을 생성할 수 있습니다.
 
-`echo REACT_APP_SERVER_URL=https://qrab.site > C:\Users\user\Frontend\.env // 디렉토리에 맞게 경로를 수정해주세요!`
+```
+echo REACT_APP_SERVER_URL=https://qrab.site > C:\Users\user\Frontend\.env // 디렉토리에 맞게 경로를 수정해주세요!
+```
 
 
 ## 🎈How to run
 
 위 과정이 모두 완료되면, 루트 디렉토리에서 아래 명령어를 입력하여 로컬에서의 서비스 실행이 가능합니다.
 
-`npm start`
+```npm start```
