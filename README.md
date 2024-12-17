@@ -8,12 +8,12 @@
 QRAB FE Repository
 
 ## 🎈How to Test
-아래 링크 접속 후,
+아래 링크 접속 후, <br>
 https://qrab-five.vercel.app
 
 다음 이메일과 비밀번호로 로그인 하면 기존 데이터로 바로 테스트 가능합니다.
 
-email : yuncom21@ewhain.net
+email : yuncom21@ewhain.net  <br>
 password : Leeyunjin1!! 
 
 
