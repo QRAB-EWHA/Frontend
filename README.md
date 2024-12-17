@@ -9,11 +9,12 @@ QRAB FE Repository
 
 ## About Source Code
 
-QRAB의 프론트엔드 프레임워크는 React.js로, 터미널또는 명령 프롬프트에 아래의 명령어를 입력하여 프로젝트를 실행해주세요.
+QRAB의 프론트엔드 프레임워크는 React.js로, 터미널(맥 or 리눅스) 또는 명령 프롬프트(윈도우)에 아래의 명령어를 입력하여 프로젝트를 실행해주세요.
 
 ## How to build
 
-이 레포지토리는 해당 명령어로 git clone 가능합니다. <br>
+이 레포지토리는 해당 명령어로 git clone 가능합니다.
+
 `git clone https://github.com/QRAB-EWHA/Frontend.git`
 
 clone 후에는 프로젝트 경로(Frontend)로 이동한 후, 종속성을 설치해주어야 합니다. 해당 프로젝트는 패키지 매니저로 npm을 사용하고 있기 때문에 npm을 설치해주어야 합니다.
