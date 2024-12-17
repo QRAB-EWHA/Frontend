@@ -16,6 +16,9 @@ https://qrab-five.vercel.app
 email : yuncom21@ewhain.net  <br>
 password : Leeyunjin1!! 
 
+만약 에러가 뜬다면 F12를 눌러 개발자도구를 켠 후, 애플리케이션 탭 클릭 후 로컬 스토리지에 있는 기존 토큰을 삭제해주세요.
+로컬 스토리지 > https://qrab-five.vercel.app 우클릭 > 삭제 
+
 
 ## 🎈About Source Code
 
