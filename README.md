@@ -7,6 +7,16 @@
 
 QRAB FE Repository
 
+## 🎈How to Test
+아래 링크 접속 후,
+https://qrab-five.vercel.app
+
+다음 이메일과 비밀번호로 로그인 하면 기존 데이터로 바로 테스트 가능합니다.
+
+email : yuncom21@ewhain.net
+password : Leeyunjin1!! 
+
+
 ## 🎈About Source Code
 
 QRAB의 프론트엔드 프레임워크는 React.js로, 터미널(맥 or 리눅스) 또는 명령 프롬프트(윈도우)에 아래의 명령어를 입력하여 프로젝트를 실행해주세요. <br>
