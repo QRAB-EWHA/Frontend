@@ -48,7 +48,7 @@ const UserInfoBox = ({ profileData, updatedMajor }) => {
                   큐랩스코어
                 </div>
                 <div className="flex items-center w-auto h-7 px-2 py-1 rounded-[1.25rem] bg-primary_blue text-sm text-white">
-                  17점
+                  0점
                 </div>
               </div>
               <div className="flex justify-between items-center w-[10rem]">

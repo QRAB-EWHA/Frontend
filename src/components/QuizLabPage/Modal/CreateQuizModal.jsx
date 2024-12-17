@@ -23,7 +23,7 @@ const CreateQuizModal = ({ setModal }) => {
   const [createdQuizSetId, setCreatedQuizSet] = useState();
   const { noteTitle } = useNoteTitleStore();
   const { noteId } = useNoteIdStore();
-  const { generatedQuizNum } = useGeneratedQuizNumStore();
+  const { isSolved } = useGeneratedQuizNumStore();
   const { setIsCreateQuizModal } = useIsCreateQuizModalStore();
   const { setIsBrightMode } = useIsBrightModeStore();
   const navigate = useNavigate();
@@ -31,7 +31,7 @@ const CreateQuizModal = ({ setModal }) => {
   const handleCreateButton = async () => {
     setLoading(true);
     try {
-      if (generatedQuizNum != 0 && selectedQuizType === "reviewQuiz") {
+      if (!isSolved && selectedQuizType === "reviewQuiz") {
         const quizNum = {
           noteId: noteId,
           totalQuestions: inputValue,
@@ -121,7 +121,7 @@ const CreateQuizModal = ({ setModal }) => {
           {!loading && (
             <>
               <div className="text-[16px] font-semibold mt-[32px]">
-                {generatedQuizNum > 0 ? "퀴즈 재생성하기" : "퀴즈 생성하기"}
+                {isSolved ? "퀴즈 재생성하기" : "퀴즈 생성하기"}
               </div>
               {!QuizCreateComplete ? (
                 <div className="w-[660px] h-[210px] rounded-[20px] border-[2px] border-gray_100">
@@ -131,7 +131,7 @@ const CreateQuizModal = ({ setModal }) => {
                         ? `${noteTitle.slice(0, 45)}...`
                         : noteTitle}
                     </div>
-                    {generatedQuizNum > 0 && (
+                    {isSolved && (
                       <div className="absolute top-7 flex gap-[17px] text-[14px] text-primary_blue font-medium">
                         <label className="flex items-center">
                           <input

@@ -73,7 +73,7 @@ const StoredQuizNote = ({ categoryData, createQuizPage = false }) => {
                   parentCategory={it.parentCategoryName}
                   childCategory={it.categoryName}
                   OriginFileOrUrl={it.fileOrUrl}
-                  quizGenerationCount={it.quizGenerationCount}
+                  isSolved={it.isSolved}
                 />
               ))}
           </div>

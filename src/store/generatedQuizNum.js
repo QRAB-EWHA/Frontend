@@ -1,8 +1,8 @@
 import { create } from "zustand";
 
 const useGeneratedQuizNumStore = create((set) => ({
-  generatedQuizNum: 0,
-  setGeneratedQuizNum: (newState) => set({ generatedQuizNum: newState }),
+  isSolved: false,
+  setIsSolved: (newState) => set({ isSolved: newState }),
 }));
 
 export default useGeneratedQuizNumStore;

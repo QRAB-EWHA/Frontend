@@ -1,6 +1,7 @@
 import empty_check from "../../assets/solvequizpage/empty_check.svg";
 import selected_checked from "../../assets/solvequizpage/selected_checked.svg";
 import correct_checked from "../../assets/solvequizpage/answer_checked.svg";
+import GoButton from "./Button/GoButton";
 
 const data = [
   {
@@ -44,37 +45,47 @@ const data = [
 const SolvedQuizComponent = ({ mainData }) => {
   return (
     <>
-      {mainData.recentWrongQuizzes.map((it, index) => (
-        <>
-          <div className="flex items-center w-[58.75rem] h-auto py-6 pl-8 rounded-[1rem] bg-secondary_bg shadow-custom">
-            <div className="flex flex-col gap-6">
-              <div className="text-base font-medium text-neutralBlack">
-                {it.question}
-              </div>
-              <div className="flex flex-col gap-3">
-                {it.choices.map((choice, index) => (
-                  <div key={index} className="flex gap-[0.94rem]">
-                    {index === it.selectedAnswer ? (
-                      <img src={selected_checked} />
-                    ) : index === it.correctAnswer ? (
-                      <img src={correct_checked} />
-                    ) : (
-                      <img src={empty_check} />
-                    )}
-                    <div
-                      className={`text-base font-medium text-gray_400 ${
-                        index === it.selectedAnswer ? "line-through" : ""
-                      }`}
-                    >
-                      {choice}
+      {mainData.recentWrongQuizzes.length === 0 ? (
+        <div className="flex justify-center w-full">
+          <GoButton
+            text="최근 틀린 퀴즈가 없어요!"
+            subText="퀴즈 풀러 가기"
+            url="/solvequiz"
+          />
+        </div>
+      ) : (
+        mainData.recentWrongQuizzes.map((it, index) => (
+          <>
+            <div className="flex items-center w-[58.75rem] h-auto py-6 pl-8 rounded-[1rem] bg-secondary_bg shadow-custom">
+              <div className="flex flex-col gap-6">
+                <div className="text-base font-medium text-neutralBlack">
+                  {it.question}
+                </div>
+                <div className="flex flex-col gap-3">
+                  {it.choices.map((choice, index) => (
+                    <div key={index} className="flex gap-[0.94rem]">
+                      {index === it.selectedAnswer ? (
+                        <img src={selected_checked} />
+                      ) : index === it.correctAnswer ? (
+                        <img src={correct_checked} />
+                      ) : (
+                        <img src={empty_check} />
+                      )}
+                      <div
+                        className={`text-base font-medium text-gray_400 ${
+                          index === it.selectedAnswer ? "line-through" : ""
+                        }`}
+                      >
+                        {choice}
+                      </div>
                     </div>
-                  </div>
-                ))}
+                  ))}
+                </div>
               </div>
             </div>
-          </div>
-        </>
-      ))}
+          </>
+        ))
+      )}
     </>
   );
 };

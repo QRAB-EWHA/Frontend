@@ -18,7 +18,7 @@ const StoredNote = ({
   parentCategory,
   childCategory,
   OriginFileOrUrl,
-  quizGenerationCount,
+  isSolved,
   quizSolvePage = false,
   page,
   isAllQuizSet = false,
@@ -29,12 +29,8 @@ const StoredNote = ({
   const { setIsCreateQuizModal } = useIsCreateQuizModalStore();
   const { setNoteTitle } = useNoteTitleStore();
   const { setCurrentNoteId } = useNoteIdStore();
-  const { setGeneratedQuizNum } = useGeneratedQuizNumStore();
+  const { setIsSolved } = useGeneratedQuizNumStore();
   const navigate = useNavigate();
-
-  useEffect(() => {
-    console.log(quizGenerationCount);
-  }, []);
 
   const handleNoteSummary = async () => {
     console.log(noteId);
@@ -60,7 +56,7 @@ const StoredNote = ({
   };
 
   const handleCreateQuiz = () => {
-    setGeneratedQuizNum(quizGenerationCount);
+    setIsSolved(isSolved);
     setNoteTitle(noteName);
     setCurrentNoteId(noteId);
     setIsCreateQuizModal(true);
@@ -105,7 +101,7 @@ const StoredNote = ({
                     ? "북마크 퀴즈 보기"
                     : quizSolvePage
                     ? "퀴즈 세트 보기"
-                    : quizGenerationCount > 0
+                    : isSolved
                     ? "퀴즈 재생성 하기"
                     : "퀴즈 생성하기"
                 }
@@ -118,7 +114,7 @@ const StoredNote = ({
                 }
                 noteName={noteName}
                 noteId={noteId}
-                quizGenerationCount={quizGenerationCount}
+                isSolved={isSolved}
                 solveQuiz={quizSolvePage}
                 isAllQuizSet={isAllQuizSet}
               />
