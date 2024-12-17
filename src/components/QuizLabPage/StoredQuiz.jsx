@@ -57,7 +57,7 @@ const StoredQuiz = ({ categoryData, quizStorageURL }) => {
             setSelectedNotes={setSelectedNotes}
             quizPage={true}
           />
-          <div
+          {/* <div
             onClick={handleSorting}
             onMouseEnter={() => setIsHovered(true)}
             onMouseLeave={() => setIsHovered(false)}
@@ -72,7 +72,7 @@ const StoredQuiz = ({ categoryData, quizStorageURL }) => {
             >
               {sorting}
             </div>
-          </div>
+          </div> */}
         </div>
         <div className="grid grid-cols-3 gap-[20px] mt-[32px]">
           {selectedNotes &&

@@ -130,7 +130,7 @@ const AddLinkNoteModal = ({ setModal, categoryData }) => {
               <div className="flex flex-col gap-[8px] ml-[32px] mt-[16px]">
                 <div className="text-base font-semibold">링크 입력하기</div>
                 <div className="text-sm font-medium text-gray_400">
-                  티스토리, 블로그 URL을 입력해 주세요.
+                  티스토리, 벨로그 URL을 입력해 주세요.
                 </div>
                 <div className="relative w-[596px] h-[48px] bg-secondary_bg rounded-[8px]">
                   <input
