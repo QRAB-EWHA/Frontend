@@ -32,6 +32,10 @@ npm install // npm 패키지 매니저 설치
 
 `REACT_APP_SERVER_URL = https://qrab.site`
 
+터미널에서는 아래와 같이 환경변수 파일을 생성할 수 있습니다.
+`echo REACT_APP_SERVER_URL=https://qrab.site > C:\Users\user\Frontend\.env` // 디렉토리에 맞게 경로를 수정해주세요!
+
+
 ## 🎈How to run
 
 위 과정이 모두 완료되면, 루트 디렉토리에서 아래 명령어를 입력하여 로컬에서의 서비스 실행이 가능합니다.
