@@ -9,7 +9,7 @@ QRAB FE Repository
 
 ## 🎈About Source Code
 
-QRAB의 프론트엔드 프레임워크는 React.js로, 터미널(맥 or 리눅스) 또는 명령 프롬프트(윈도우)에 아래 설명된 명령어를 입력하여 프로젝트를 실행해주세요. <br>
+QRAB의 프론트엔드 프레임워크는 React.js로, 터미널(맥 or 리눅스) 또는 명령 프롬프트(윈도우)에 아래의 명령어를 입력하여 프로젝트를 실행해주세요. <br>
 스타일 라이브러리는 tailwind.css, 상태관리 라이브러리는 ReactQuery와 Zustand를 사용했지만, package.json 파일에 이미 반영되어 있으므로 아래 과정만 수행해주시면 문제없이 동작이 가능합니다.
 
 ## 🎈How to build
