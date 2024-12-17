@@ -7,12 +7,12 @@
 
 QRAB FE Repository
 
-## About Source Code
+## 🎈About Source Code
 
 QRAB의 프론트엔드 프레임워크는 React.js로, 터미널(맥 or 리눅스) 또는 명령 프롬프트(윈도우)에 아래의 명령어를 입력하여 프로젝트를 실행해주세요. <br>
 스타일 라이브러리는 tailwind.css, 상태관리 라이브러리는 ReactQuery와 Zustand를 사용했지만, package.json 파일에 이미 반영되어 있으므로 아래 과정만 수행해주시면 문제없이 동작이 가능합니다.
 
-## How to build
+## 🎈How to build
 
 이 레포지토리는 해당 명령어로 git clone 가능합니다.
 
@@ -32,7 +32,7 @@ npm install // npm 패키지 매니저 설치
 
 `REACT_APP_SERVER_URL = https://qrab.site`
 
-## How to run
+## 🎈How to run
 
 위 과정이 모두 완료되면, 루트 디렉토리에서 아래 명령어를 입력하여 로컬에서의 서비스 실행이 가능합니다.
 
