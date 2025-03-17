@@ -7,17 +7,18 @@
 
 QRAB FE Repository
 
-## 🎈How to Test
-아래 링크 접속 후, <br>
-https://qrab-five.vercel.app
-
-다음 이메일과 비밀번호로 로그인 하면 기존 데이터로 바로 테스트 가능합니다.
-
-email : yuncom21@ewhain.net  <br>
-password : Leeyunjin1!! 
-
-만약 에러가 뜬다면 F12를 눌러 개발자도구를 켠 다음, 애플리케이션 탭 클릭 후 로컬 스토리지에 있는 기존 토큰을 삭제해주세요. <br>
-로컬 스토리지 > https://qrab-five.vercel.app 우클릭 > 삭제 
+## 🎈Introduction
+<img width="960" alt="image" src="https://github.com/user-attachments/assets/5f0e6fd6-6fbb-4481-9b31-a242a9ddc3ee" />
+<img width="878" alt="image" src="https://github.com/user-attachments/assets/814b7bcf-5637-4576-896a-854db277c293" />
+<img width="878" alt="image" src="https://github.com/user-attachments/assets/426ade5d-dc7a-435c-8c08-d14f7ff89149" />
+<img width="878" alt="image" src="https://github.com/user-attachments/assets/53353209-52ba-4f44-80de-fd3e182aa77f" />
+<img width="878" alt="image" src="https://github.com/user-attachments/assets/603bddc1-0195-4ff0-a913-08dea1595e72" />
+<img width="878" alt="image" src="https://github.com/user-attachments/assets/3d3eec99-2ae6-445a-a275-01f7d923b088" />
+<img width="878" alt="image" src="https://github.com/user-attachments/assets/526d696a-4df9-47c6-997f-4ff67c4ddf77" />
+<img width="878" alt="image" src="https://github.com/user-attachments/assets/e6065161-c077-4516-bd5a-e05055598fee" />
+<img width="878" alt="image" src="https://github.com/user-attachments/assets/967c35fe-112e-4f54-9d86-71f85c3f9dfe" />
+<img width="878" alt="image" src="https://github.com/user-attachments/assets/69c460ce-ca33-4870-bc24-00e56ab969bd" />
+<img width="878" alt="image" src="https://github.com/user-attachments/assets/e8b4eb6b-c4a3-4118-a9a1-fe6e9e04169f" />
 
 
 ## 🎈About Source Code
