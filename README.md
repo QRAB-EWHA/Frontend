@@ -13,6 +13,7 @@ QRAB FE Repository
 <img width="878" alt="image" src="https://github.com/user-attachments/assets/426ade5d-dc7a-435c-8c08-d14f7ff89149" />
 <img width="878" alt="image" src="https://github.com/user-attachments/assets/53353209-52ba-4f44-80de-fd3e182aa77f" />
 <img width="878" alt="image" src="https://github.com/user-attachments/assets/603bddc1-0195-4ff0-a913-08dea1595e72" />
+<img width="878" alt="image" src="https://github.com/user-attachments/assets/7b80cc1b-c1e8-4f48-85d1-a706a2196d8b" />
 <img width="878" alt="image" src="https://github.com/user-attachments/assets/3d3eec99-2ae6-445a-a275-01f7d923b088" />
 <img width="878" alt="image" src="https://github.com/user-attachments/assets/526d696a-4df9-47c6-997f-4ff67c4ddf77" />
 <img width="878" alt="image" src="https://github.com/user-attachments/assets/e6065161-c077-4516-bd5a-e05055598fee" />
@@ -20,6 +21,11 @@ QRAB FE Repository
 <img width="878" alt="image" src="https://github.com/user-attachments/assets/69c460ce-ca33-4870-bc24-00e56ab969bd" />
 <img width="878" alt="image" src="https://github.com/user-attachments/assets/e8b4eb6b-c4a3-4118-a9a1-fe6e9e04169f" />
 
+## 🎈Architecture
+<img width="838" alt="image" src="https://github.com/user-attachments/assets/a3be2f40-d999-44b2-b589-fdeda7b67469" />
+
+## 🎈Demo
+https://drive.google.com/file/d/1xGpTxij1A_QUSAK6bPtBmX8DjYgd98Vj/view?usp=sharing
 
 ## 🎈About Source Code
 
