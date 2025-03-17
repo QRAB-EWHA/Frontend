@@ -21,16 +21,20 @@ QRAB FE Repository
 <img width="878" alt="image" src="https://github.com/user-attachments/assets/69c460ce-ca33-4870-bc24-00e56ab969bd" />
 <img width="878" alt="image" src="https://github.com/user-attachments/assets/e8b4eb6b-c4a3-4118-a9a1-fe6e9e04169f" />
 
+
 ## 🎈Architecture
 <img width="838" alt="image" src="https://github.com/user-attachments/assets/a3be2f40-d999-44b2-b589-fdeda7b67469" />
 
+
 ## 🎈Demo
 https://drive.google.com/file/d/1xGpTxij1A_QUSAK6bPtBmX8DjYgd98Vj/view?usp=sharing
+
 
 ## 🎈About Source Code
 
 QRAB의 프론트엔드 프레임워크는 React.js로, 터미널(맥 or 리눅스) 또는 명령 프롬프트(윈도우)에 아래의 명령어를 입력하여 프로젝트를 실행해주세요. <br>
 스타일 라이브러리는 tailwind.css, 상태관리 라이브러리는 ReactQuery와 Zustand를 사용했지만, package.json 파일에 이미 반영되어 있으므로 아래 과정만 수행해주시면 문제없이 동작이 가능합니다.
+
 
 ## 🎈How to build
 
